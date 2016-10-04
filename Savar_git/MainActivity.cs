@@ -5,27 +5,84 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using System.Collections.Generic;
+using Savar_git;
+using Android;
 
 namespace Savar_git
 {
-    [Activity(Label = "Savar_git", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "SavarMap", MainLauncher = false, Icon = "@drawable/icon")]
+
+    public class MainActivity : Activity, IOnMapReadyCallback
     {
-        int count = 1;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
+            mapFragment.GetMapAsync(this);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
-
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
         }
+        public struct Position
+        {
+            public Double PosX;
+            public Double PosY;
+            public string Desc;
+            public Position(Double PosiX, Double PosiY, string Descri)
+            {
+                PosX = PosiX;
+                PosY = PosiY;
+                Desc = Descri;
+            }
+
+        };
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+
+            CriaPontos(googleMap);
+            googleMap.UiSettings.ZoomControlsEnabled = true;
+            googleMap.UiSettings.CompassEnabled = true;
+
+            googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+        }
+        private void CriaPontos(GoogleMap googleMap)
+        {
+
+
+            List<Position> Locations = GetReferences();
+
+            // Conecta banco
+            // Busca Pontos -26.242570, -48.815741
+            foreach (Position item in Locations)
+            {
+                googleMap.AddMarker(new MarkerOptions()
+                       .SetPosition(new LatLng(item.PosX, item.PosY))
+                       .SetTitle(item.Desc));
+            }
+        }
+        private List<Position> GetReferences()
+        {
+            List<Position> Lista = new List<Position>();
+            Position Local;
+            Local = new Position(-26.242570, -48.915741, "Marca1");
+            Lista.Add(Local);
+
+            Local = new Position(-26.242570, -48.815541, "Marca 2");
+            Lista.Add(Local);
+
+            Local = new Position(-27.242570, -48.845741, "Marca 3");
+            Lista.Add(Local);
+
+            Local = new Position(-26.245570, -48.835741, "Marca 4");
+            Lista.Add(Local);
+
+            return Lista;
+        }
+
     }
 }
 
