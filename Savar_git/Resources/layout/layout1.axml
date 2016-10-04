@@ -10,4 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText1" />
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TesteButton" />
+    <TextView
+        android:text="SysLog"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SysLog"
+        android:editable="true"
+        android:enabled="true" />
 </LinearLayout>

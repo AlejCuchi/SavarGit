@@ -18,10 +18,10 @@ namespace Savar_git
         public bool InputOnibus(int nNunOnibus, string cPlaca, double PosX, double PosY, double PosZ, string cRota )
         {
             bool lRet = false;
-            string LogDatabase = "";
+            
             dbMngmt Database = new dbMngmt();
-
-            if(Database.ConectionTest(ref LogDatabase))
+            
+            if(Database.ConectionTest())
             {
                 
             }
@@ -30,15 +30,15 @@ namespace Savar_git
         public void SelectOnibus(int nNumero, string cPlaca, string cRota="")
         {
             string cQuery = "";
-            string cLog = "";
+            
             cQuery += "SELECT * FROM onibus ";
             cQuery += "WHERE numero_onibus = " + nNumero.ToString();
             cQuery += "  AND placa = "+ cPlaca ;
-            if (Database.ConectionTest(ref cLog))
+            if (Database.ConectionTest())
             {
                 
             }
-            //MySqlCommand Com = new MySqlCommand(Database,);
+            
         }
         public bool UpdateOnibus()
         {
