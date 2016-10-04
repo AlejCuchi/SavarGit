@@ -49,6 +49,7 @@ namespace Savar_git
             catch (MySqlException ex)
             {
                 Log = ex.ToString();
+
             }
             return lRet;
         }
