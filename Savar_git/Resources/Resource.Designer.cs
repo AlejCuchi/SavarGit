@@ -346,6 +346,9 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000d
 			public const int editText1 = 2131165197;
 			
+			// aapt resource value: 0x7f07000f
+			public const int gridLayout1 = 2131165199;
+			
 			// aapt resource value: 0x7f070000
 			public const int hybrid = 2131165184;
 			
@@ -413,6 +416,9 @@ namespace Savar_git
 			
 			// aapt resource value: 0x7f030002
 			public const int Main = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int motorista = 2130903043;
 			
 			static Layout()
 			{
