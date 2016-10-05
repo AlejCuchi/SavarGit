@@ -352,8 +352,8 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000d
 			public const int editText1 = 2131165197;
 			
-			// aapt resource value: 0x7f07000f
-			public const int gridLayout1 = 2131165199;
+			// aapt resource value: 0x7f070011
+			public const int gridLayout1 = 2131165201;
 			
 			// aapt resource value: 0x7f070000
 			public const int hybrid = 2131165184;
