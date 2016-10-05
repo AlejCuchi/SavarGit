@@ -331,6 +331,12 @@ namespace Savar_git
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f07000f
+			public const int SysLog = 2131165199;
+			
+			// aapt resource value: 0x7f07000e
+			public const int TesteButton = 2131165198;
+			
 			// aapt resource value: 0x7f070005
 			public const int adjust_height = 2131165189;
 			
@@ -358,8 +364,8 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000c
 			public const int light = 2131165196;
 			
-			// aapt resource value: 0x7f07000e
-			public const int mapFrag = 2131165198;
+			// aapt resource value: 0x7f070010
+			public const int mapFrag = 2131165200;
 			
 			// aapt resource value: 0x7f070001
 			public const int none = 2131165185;
