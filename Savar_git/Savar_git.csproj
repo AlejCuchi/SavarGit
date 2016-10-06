@@ -74,7 +74,7 @@
     <Compile Include="DataResource\dbMngmt.cs" />
     <Compile Include="funcionario.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="OnibusClass.cs" />
+    <Compile Include="DataResource\OnibusClass.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

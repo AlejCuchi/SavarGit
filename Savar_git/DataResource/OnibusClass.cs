@@ -14,30 +14,26 @@ namespace Savar_git
 {
     class OnibusClass // Collunm : numero_onibus:int | placa:varchar | X:double | y:double | z:double | rota:varchar | 
     {
-        dbMngmt Database = new dbMngmt();
+        private string ConnectionString = "";
+
+        OnibusClass(string StringConect)
+        {
+            ConnectionString = StringConect;
+        }
         public bool InputOnibus(int nNunOnibus, string cPlaca, double PosX, double PosY, double PosZ, string cRota )
         {
             bool lRet = false;
+
             
-            dbMngmt Database = new dbMngmt();
-            
-            if(Database.ConectionTest())
-            {
-                
-            }
             return lRet;
         }
         public void SelectOnibus(int nNumero, string cPlaca, string cRota="")
         {
-            string cQuery = "";
             
-            cQuery += "SELECT * FROM onibus ";
-            cQuery += "WHERE numero_onibus = " + nNumero.ToString();
-            cQuery += "  AND placa = "+ cPlaca ;
-            if (Database.ConectionTest())
+            /*if (Database.ConectionTest())
             {
                 
-            }
+            }8*/
             
         }
         public bool UpdateOnibus()
