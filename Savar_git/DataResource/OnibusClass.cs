@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Savar_git
 {
@@ -27,13 +29,42 @@ namespace Savar_git
             
             return lRet;
         }
-        public void SelectOnibus(int nNumero, string cPlaca, string cRota="")
+        public void SelectOnibus(int nNumero = 0, string cPlaca= "", string cRota="")
         {
+            dbMngmt Database = new dbMngmt();
+            DataTable Onibus = new DataTable();
+            MySqlDataAdapter OnibusData = new MySqlDataAdapter();
+            MySqlCommand Command = null;
+            string cQuery = "";
+
+            cQuery += "USE Savar; ";
+            cQuery += "Select * from Savar.onibus ";
+            cQuery += "WHERE ";
             
-            /*if (Database.ConectionTest())
+            if(cRota == "")
+            {
+                cQuery += "numero_onibus = " + nNumero.ToString() + " AND ";
+                cQuery += "placa = " + cPlaca + " ;";
+            }
+            else
+            {
+                cQuery = " rota = " + cRota + " ;";
+            }
+            Command = new MySqlCommand(cQuery, Database.Database);
+            try
+            {
+                if (Database.ConectionTest())
+                {
+                    OnibusData.SelectCommand = Command;
+                    OnibusData.Fill(Onibus);
+
+                }
+            }
+            catch (MySqlException ex)
             {
                 
-            }8*/
+            }
+            
             
         }
         public bool UpdateOnibus()

@@ -18,7 +18,7 @@ namespace Savar_git
     [Activity(Label = "SavarMap", MainLauncher = true , Icon = "@drawable/icon")]
     public class dbMngmt :Activity
     {
-        MySqlConnection Database = new MySqlConnection("Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8");
+        public MySqlConnection Database = new MySqlConnection("Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8");
         private TextView SysLogVIewer;
         private Button NewButton;
         //private EditText TesteWIndow;
@@ -68,26 +68,36 @@ namespace Savar_git
                 {
                     lRet = true;
                 }
+                SysLogVIewer.Text = "Conexão realizada com sucesso!!!";
             }
             catch (MySqlException ex)
             {
                 SysLogVIewer.Text = ex.ToString();
             }
+            
             return lRet;
         }
 
 
-        public DataTable SelectTable(string Table, string cPrimaryKey)
+        public DataTable SelectTable(string Table, string cPrimaryKey = "")
         {
             DataTable TabRet = new DataTable();
             DataTable TableWork = new DataTable();
             MySqlDataAdapter MyData = new MySqlDataAdapter();
-            
-            string cQUery = "";
+            MySqlCommand MyCommand =null;
+            string cQuery = "";
 
-            cQUery += "USE SAVAR; SELECT * FROM SAVAR.onibus; " ;
+            cQuery += "USE Savar; SELECT * FROM Savar." + Table + "  " ;
+            if (cPrimaryKey == "")
+            {
+                cQuery += " ; ";
+            }
+            else
+            {
+                cQuery += "WHERE (SELECT"
+            }
 
-            MySqlCommand MyCommand = new MySqlCommand(cQUery, Database);
+            MyCommand = new MySqlCommand(cQuery, Database);
 
             try
             {
@@ -95,8 +105,9 @@ namespace Savar_git
                 {
                     MyData.SelectCommand = MyCommand;
                     MyData.Fill(TableWork);
-                    Console.WriteLine(" ");
+                    SysLogVIewer.Text = "Tabela Preenchida";
                 }
+                
             }
             catch (MySqlException ex)
             {
