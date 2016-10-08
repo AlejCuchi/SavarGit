@@ -161,7 +161,7 @@ namespace Savar_git
             {
                 if (Database.ConectionTest())
                 {
-                    Command.
+                    
                 }
             }catch(MySqlException ex)
             {
