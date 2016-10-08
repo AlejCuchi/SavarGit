@@ -121,51 +121,40 @@ namespace Savar_git
         }
 
 
-        public bool UpdateOnibus(string cNumOnibus, string cPlaca, double PosX=0, double PosY=0, double PosZ=0, string cNewNumOnibus="", string cNewPlaca="")
+        public string UpdateOnibus(string cNumOnibus, string cPlaca, double PosX=0, double PosY=0, double PosZ=0, string cNewNumOnibus="", string cNewPlaca="")
         {
-            bool lRet = false;
+            string lRet = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
 
             cQuery += "USE Savar; ";
-            cQuery += "UPDATE Savar.onibus (";
-            if(cNewNumOnibus != "")
-            {
-                cQuery += " numero_onibus ";
-            }
-            if(cNewPlaca != "")
-            {
-                cQuery += " ,placa ";
-            }
-            if(PosX != 0 || PosY != 0 || PosZ != 0)
-            {
-                cQuery += " ,x,y,z  ";
-            }
-            cQuery += " ) Values ( ";
+            cQuery += "UPDATE Savar.onibus ";
+            
+            cQuery += " SET  ";
             if (cNewNumOnibus != "")
             {
-                cQuery += " " + cNewNumOnibus + " , ";
+                cQuery += " numero_onibus = '" + cNewNumOnibus + "' , ";
             }
             if(cNewPlaca != "")
             {
-                cQuery += " " + cNewPlaca + " , ";
+                cQuery += " placa = '" + cNewPlaca + "' , ";
             }
             if(PosX != 0 || PosY != 0 || PosZ != 0)
             {
-                cQuery += " "+PosX.ToString()+" , "+PosY.ToString()+" , "+PosZ.ToString()+"   ";
+                cQuery += " x = "+PosX.ToString()+" , y = "+PosY.ToString()+" ,z =  "+PosZ.ToString()+" ";
             }
-            cQuery += " ) WHERE numero_onibus = "+ cNumOnibus +" AND placa = "+ cPlaca +" ; ";
+            cQuery += "  WHERE numero_onibus = '"+ cNumOnibus +"' AND placa = '"+ cPlaca +"' ; ";
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {
                 if (Database.ConectionTest())
                 {
-                    
+                    Command.ExecuteNonQuery();
                 }
             }catch(MySqlException ex)
             {
-
+                lRet = ex.ToString();
             }
             return lRet;
         }

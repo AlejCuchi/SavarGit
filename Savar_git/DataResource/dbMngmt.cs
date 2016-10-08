@@ -38,7 +38,7 @@ namespace Savar_git
             OnibusClass obj = new OnibusClass(ConectString);
             if (ConectionTest())
             {
-                SysLogVIewer.Text =  obj.InputOnibus("111", "aaa-3333");
+                SysLogVIewer.Text =  obj.UpdateOnibus("111", "aaa-3333",111,123,444);
             }
             
         }
