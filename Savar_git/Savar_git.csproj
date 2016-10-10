@@ -77,6 +77,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activitys\Horarios.cs" />
+    <Compile Include="Activitys\Lista_onibus.cs" />
+    <Compile Include="Activitys\Main_Screen_User.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
     <Compile Include="funcionario.cs" />
     <Compile Include="MainActivity.cs" />
@@ -98,6 +101,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\lista_onibus.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Main_usuario.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -124,6 +130,9 @@
       <Visible>False</Visible>
       <Version>1.0</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Alterações e Mudanças.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

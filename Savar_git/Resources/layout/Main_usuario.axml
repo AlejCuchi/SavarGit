@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="81.0dp"
+        android:id="@+id/linearLayout2">
+        <TextView
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="254.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Text_UserIdentify"
+            android:gravity="center" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout3">
+            <Button
+                android:text="Sair"
+                android:layout_width="match_parent"
+                android:layout_height="40.5dp"
+                android:id="@+id/Btn_LogOut"
+                android:textSize="22dp" />
+            <Button
+                android:text="Configuração"
+                android:layout_width="match_parent"
+                android:layout_height="39.5dp"
+                android:id="@+id/Btn_UserConfig"
+                android:textSize="22px" />
+        </LinearLayout>
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="77.5dp"
+        android:id="@+id/space1" />
+    <Button
+        android:text="Horários"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_VerHorarios" />
+    <Button
+        android:text="Verificar mapas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_VerMapas" />
+    <Button
+        android:text="Jogos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_Jogos" />
+</LinearLayout>

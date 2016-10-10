@@ -1,24 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.IO;
+using Savar_git;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = true , Icon = "@drawable/icon")]
+    [Activity(Label = "SavarMap", MainLauncher = false , Icon = "@drawable/icon")]
     public class dbMngmt :Activity
     {
-        public MySqlConnection Database = new MySqlConnection("Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8");
+        public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
+        public MySqlConnection Database = new MySqlConnection(ConectString);
         private TextView SysLogVIewer;
         private Button NewButton;
         //private EditText TesteWIndow;
@@ -35,15 +30,15 @@ namespace Savar_git
 
             NewButton.Click += NewButton_Click;
             //TesteWIndow.Text = "Teste Botão1";
-
         }
 
         private void NewButton_Click(object sender, EventArgs e)
         {
             SysLogVIewer.Text = "Teste base de dados.";
+            OnibusClass obj = new OnibusClass(ConectString);
             if (ConectionTest())
             {
-                SelectTable("onibus", "   ");
+                SysLogVIewer.Text =  obj.UpdateOnibus("111", "aaa-3333",111,123,444);
             }
             
         }
@@ -68,11 +63,12 @@ namespace Savar_git
                 {
                     lRet = true;
                 }
-                SysLogVIewer.Text = "Conexão realizada com sucesso!!!";
+                //SysLogVIewer.Text = "Conexão realizada com sucesso!!!";
             }
             catch (MySqlException ex)
             {
-                SysLogVIewer.Text = ex.ToString();
+                ex.ToString();
+                // SysLogVIewer.Text = ex.ToString();
             }
             
             return lRet;
@@ -85,6 +81,7 @@ namespace Savar_git
             DataTable TableWork = new DataTable();
             MySqlDataAdapter MyData = new MySqlDataAdapter();
             MySqlCommand MyCommand =null;
+            //OnibusClass ObjOnibus = new OnibusClass();
             string cQuery = "";
 
             cQuery += "USE Savar; SELECT * FROM Savar." + Table + "  " ;
@@ -94,7 +91,7 @@ namespace Savar_git
             }
             else
             {
-                cQuery += "WHERE SELECT";
+                cQuery += "WHERE (SELECT";
             }
 
             MyCommand = new MySqlCommand(cQuery, Database);
