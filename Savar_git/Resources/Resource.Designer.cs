@@ -331,11 +331,38 @@ namespace Savar_git
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f07002e
+			public const int Btn_Jogos = 2131165230;
+			
+			// aapt resource value: 0x7f07002a
+			public const int Btn_LogOut = 2131165226;
+			
+			// aapt resource value: 0x7f07002b
+			public const int Btn_UserConfig = 2131165227;
+			
+			// aapt resource value: 0x7f07002c
+			public const int Btn_VerHorarios = 2131165228;
+			
+			// aapt resource value: 0x7f07002d
+			public const int Btn_VerMapas = 2131165229;
+			
+			// aapt resource value: 0x7f070027
+			public const int Grd_ListaOnibus = 2131165223;
+			
 			// aapt resource value: 0x7f070024
 			public const int SysLog = 2131165220;
 			
 			// aapt resource value: 0x7f070023
 			public const int TesteButton = 2131165219;
+			
+			// aapt resource value: 0x7f070029
+			public const int Text_UserIdentify = 2131165225;
+			
+			// aapt resource value: 0x7f070025
+			public const int Txt_OnibusNumero = 2131165221;
+			
+			// aapt resource value: 0x7f070026
+			public const int Txt_PlacaOnibus = 2131165222;
 			
 			// aapt resource value: 0x7f070005
 			public const int adjust_height = 2131165189;
@@ -406,8 +433,8 @@ namespace Savar_git
 			// aapt resource value: 0x7f07001d
 			public const int linearLayout8 = 2131165213;
 			
-			// aapt resource value: 0x7f070026
-			public const int mapFrag = 2131165222;
+			// aapt resource value: 0x7f070028
+			public const int mapFrag = 2131165224;
 			
 			// aapt resource value: 0x7f070001
 			public const int none = 2131165185;
@@ -441,9 +468,6 @@ namespace Savar_git
 			
 			// aapt resource value: 0x7f070014
 			public const int textView2 = 2131165204;
-			
-			// aapt resource value: 0x7f070025
-			public const int textView3 = 2131165221;
 			
 			// aapt resource value: 0x7f070009
 			public const int wide = 2131165193;
@@ -494,6 +518,9 @@ namespace Savar_git
 			
 			// aapt resource value: 0x7f030005
 			public const int Main = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int Main_usuario = 2130903046;
 			
 			static Layout()
 			{

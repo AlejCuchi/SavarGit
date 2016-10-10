@@ -115,7 +115,7 @@ namespace Savar_git
             }
             catch (MySqlException ex)
             {
-                
+                ex.ToString();
             }
             return Onibus;
         }

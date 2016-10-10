@@ -9,7 +9,7 @@ using Savar_git;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = true , Icon = "@drawable/icon")]
+    [Activity(Label = "SavarMap", MainLauncher = false , Icon = "@drawable/icon")]
     public class dbMngmt :Activity
     {
         public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
@@ -67,7 +67,8 @@ namespace Savar_git
             }
             catch (MySqlException ex)
             {
-               // SysLogVIewer.Text = ex.ToString();
+                ex.ToString();
+                // SysLogVIewer.Text = ex.ToString();
             }
             
             return lRet;

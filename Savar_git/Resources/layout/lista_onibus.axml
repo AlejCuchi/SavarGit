@@ -45,7 +45,7 @@
         android:inputType="textMultiLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
+        android:id="@+id/Txt_OnibusNumero" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/textView2" />
+            android:id="@+id/Txt_PlacaOnibus" />
     </LinearLayout>
     <EditText
         android:inputType="textMultiLine"
@@ -64,10 +64,10 @@
         android:layout_height="47.5dp"
         android:id="@+id/editText2"
         android:layout_marginBottom="21.5dp" />
-    <TextView
-        android:text="    LISTA DE ÔNIBUS CADASTRADOS"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <GridView
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:layout_height="match_parent"
+        android:id="@+id/Grd_ListaOnibus" />
 </LinearLayout>
