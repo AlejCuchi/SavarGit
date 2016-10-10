@@ -81,7 +81,7 @@
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
-    <Compile Include="funcionario.cs" />
+    <Compile Include="Activitys\funcionario.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -93,7 +93,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\layout1.axml" />
-    <AndroidResource Include="Resources\layout\Login.axml" />
+    <AndroidResource Include="Resources\layout\Login_Principal.axml" />
     <AndroidResource Include="Resources\layout\funcionario.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -104,6 +104,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Main_usuario.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\inicio_motorista.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
