@@ -94,7 +94,7 @@ namespace Savar_git
             }
             else
             {
-                cQuery += "WHERE (SELECT"
+                cQuery += "WHERE SELECT";
             }
 
             MyCommand = new MySqlCommand(cQuery, Database);
