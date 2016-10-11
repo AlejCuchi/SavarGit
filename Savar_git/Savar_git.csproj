@@ -74,7 +74,9 @@
     <Compile Include="Activitys\Horarios.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
+    <Compile Include="Activitys\UserLogin.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
+    <Compile Include="DataResource\UsuarioClass.cs" />
     <Compile Include="funcionario.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
