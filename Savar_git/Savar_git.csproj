@@ -89,17 +89,19 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\layout1.axml" />
-    <AndroidResource Include="Resources\layout\Login.axml" />
-    <AndroidResource Include="Resources\layout\funcionario.axml">
+    <AndroidResource Include="Resources\layout\login_main.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\inicio_funcionario.axml">
+    <AndroidResource Include="Resources\layout\main_funcionario.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\lista_onibus.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Main_usuario.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\cadastro_usuario.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

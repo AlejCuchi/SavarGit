@@ -11,6 +11,16 @@
         android:minHeight="25px">
         <Space
             android:id="@+id/space1" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout7"
+            android:layout_marginRight="137.0dp" />
+        <TextView
+            android:text="SAVAR"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView3" />
     </GridLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -79,4 +89,25 @@
             android:layout_height="match_parent"
             android:id="@+id/button1" />
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space2" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="173.0dp"
+        android:id="@+id/linearLayout6">
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/space3" />
+    </LinearLayout>
+    <Button
+        android:text="Não é cadastrado? Crie sua conta."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
 </LinearLayout>

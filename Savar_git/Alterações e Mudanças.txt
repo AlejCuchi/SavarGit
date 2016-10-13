@@ -1,5 +1,9 @@
 ﻿Alterar a tabela Onibus para ter um campo combo, com as tres opções{Ativo, Desativo, Manutenção}
+Criei uma coluna chamada status
 
 Adicionar campo na tabela de clientes para guardar o email.
+Feito
+
 
 Criar tela para cadastro dos usuários novos- não vo fazer com o login do google, da mt trampo pra gerenciar.
+Feito

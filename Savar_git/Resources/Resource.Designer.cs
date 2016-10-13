@@ -331,50 +331,38 @@ namespace Savar_git
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07002c
-			public const int Btn_CriaConta = 2131165228;
-			
-			// aapt resource value: 0x7f07002a
-			public const int Btn_Entrar = 2131165226;
-			
-			// aapt resource value: 0x7f070033
-			public const int Btn_Jogos = 2131165235;
-			
-			// aapt resource value: 0x7f07002f
-			public const int Btn_LogOut = 2131165231;
-			
-			// aapt resource value: 0x7f070030
-			public const int Btn_UserConfig = 2131165232;
+			// aapt resource value: 0x7f070035
+			public const int Btn_Jogos = 2131165237;
 			
 			// aapt resource value: 0x7f070031
-			public const int Btn_VerHorarios = 2131165233;
+			public const int Btn_LogOut = 2131165233;
 			
 			// aapt resource value: 0x7f070032
-			public const int Btn_VerMapas = 2131165234;
+			public const int Btn_UserConfig = 2131165234;
 			
-			// aapt resource value: 0x7f070029
-			public const int EdT_Senha = 2131165225;
+			// aapt resource value: 0x7f070033
+			public const int Btn_VerHorarios = 2131165235;
 			
-			// aapt resource value: 0x7f070028
-			public const int EdT_Usuario = 2131165224;
-			
-			// aapt resource value: 0x7f070027
-			public const int Grd_ListaOnibus = 2131165223;
-			
-			// aapt resource value: 0x7f070024
-			public const int SysLog = 2131165220;
-			
-			// aapt resource value: 0x7f070023
-			public const int TesteButton = 2131165219;
-			
-			// aapt resource value: 0x7f07002e
-			public const int Text_UserIdentify = 2131165230;
-			
-			// aapt resource value: 0x7f070025
-			public const int Txt_OnibusNumero = 2131165221;
+			// aapt resource value: 0x7f070034
+			public const int Btn_VerMapas = 2131165236;
 			
 			// aapt resource value: 0x7f070026
-			public const int Txt_PlacaOnibus = 2131165222;
+			public const int Grd_ListaOnibus = 2131165222;
+			
+			// aapt resource value: 0x7f070021
+			public const int SysLog = 2131165217;
+			
+			// aapt resource value: 0x7f070020
+			public const int TesteButton = 2131165216;
+			
+			// aapt resource value: 0x7f070030
+			public const int Text_UserIdentify = 2131165232;
+			
+			// aapt resource value: 0x7f070024
+			public const int Txt_OnibusNumero = 2131165220;
+			
+			// aapt resource value: 0x7f070025
+			public const int Txt_PlacaOnibus = 2131165221;
 			
 			// aapt resource value: 0x7f070005
 			public const int adjust_height = 2131165189;
@@ -385,32 +373,41 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000a
 			public const int auto = 2131165194;
 			
-			// aapt resource value: 0x7f070018
-			public const int button1 = 2131165208;
-			
 			// aapt resource value: 0x7f07001f
-			public const int button2 = 2131165215;
-			
-			// aapt resource value: 0x7f070020
-			public const int button3 = 2131165216;
+			public const int button1 = 2131165215;
 			
 			// aapt resource value: 0x7f070022
-			public const int button4 = 2131165218;
+			public const int button2 = 2131165218;
+			
+			// aapt resource value: 0x7f070023
+			public const int button3 = 2131165219;
+			
+			// aapt resource value: 0x7f07002f
+			public const int button4 = 2131165231;
 			
 			// aapt resource value: 0x7f07000b
 			public const int dark = 2131165195;
 			
-			// aapt resource value: 0x7f070012
-			public const int editText1 = 2131165202;
+			// aapt resource value: 0x7f070015
+			public const int editText1 = 2131165205;
 			
-			// aapt resource value: 0x7f070016
-			public const int editText2 = 2131165206;
+			// aapt resource value: 0x7f070017
+			public const int editText2 = 2131165207;
 			
-			// aapt resource value: 0x7f07001a
-			public const int gallery1 = 2131165210;
+			// aapt resource value: 0x7f070019
+			public const int editText3 = 2131165209;
 			
-			// aapt resource value: 0x7f07000d
-			public const int gridLayout1 = 2131165197;
+			// aapt resource value: 0x7f07001b
+			public const int editText4 = 2131165211;
+			
+			// aapt resource value: 0x7f07001d
+			public const int editText5 = 2131165213;
+			
+			// aapt resource value: 0x7f07002d
+			public const int gallery1 = 2131165229;
+			
+			// aapt resource value: 0x7f070027
+			public const int gridLayout1 = 2131165223;
 			
 			// aapt resource value: 0x7f070000
 			public const int hybrid = 2131165184;
@@ -421,32 +418,32 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000c
 			public const int light = 2131165196;
 			
+			// aapt resource value: 0x7f07000d
+			public const int linearLayout1 = 2131165197;
+			
 			// aapt resource value: 0x7f07000f
-			public const int linearLayout1 = 2131165199;
+			public const int linearLayout2 = 2131165199;
 			
 			// aapt resource value: 0x7f070011
-			public const int linearLayout2 = 2131165201;
+			public const int linearLayout3 = 2131165201;
 			
 			// aapt resource value: 0x7f070013
-			public const int linearLayout3 = 2131165203;
+			public const int linearLayout4 = 2131165203;
 			
-			// aapt resource value: 0x7f070015
-			public const int linearLayout4 = 2131165205;
+			// aapt resource value: 0x7f07001e
+			public const int linearLayout5 = 2131165214;
 			
-			// aapt resource value: 0x7f070017
-			public const int linearLayout5 = 2131165207;
+			// aapt resource value: 0x7f070029
+			public const int linearLayout6 = 2131165225;
 			
-			// aapt resource value: 0x7f070021
-			public const int linearLayout6 = 2131165217;
+			// aapt resource value: 0x7f070028
+			public const int linearLayout7 = 2131165224;
 			
-			// aapt resource value: 0x7f07001c
-			public const int linearLayout7 = 2131165212;
+			// aapt resource value: 0x7f07002e
+			public const int linearLayout8 = 2131165230;
 			
-			// aapt resource value: 0x7f07001d
-			public const int linearLayout8 = 2131165213;
-			
-			// aapt resource value: 0x7f07002d
-			public const int mapFrag = 2131165229;
+			// aapt resource value: 0x7f07002b
+			public const int mapFrag = 2131165227;
 			
 			// aapt resource value: 0x7f070001
 			public const int none = 2131165185;
@@ -454,8 +451,8 @@ namespace Savar_git
 			// aapt resource value: 0x7f070002
 			public const int normal = 2131165186;
 			
-			// aapt resource value: 0x7f070019
-			public const int relativeLayout1 = 2131165209;
+			// aapt resource value: 0x7f07002c
+			public const int relativeLayout1 = 2131165228;
 			
 			// aapt resource value: 0x7f070003
 			public const int satellite = 2131165187;
@@ -463,11 +460,11 @@ namespace Savar_git
 			// aapt resource value: 0x7f07000e
 			public const int space1 = 2131165198;
 			
-			// aapt resource value: 0x7f07001e
-			public const int space2 = 2131165214;
+			// aapt resource value: 0x7f070010
+			public const int space2 = 2131165200;
 			
-			// aapt resource value: 0x7f07001b
-			public const int space3 = 2131165211;
+			// aapt resource value: 0x7f07002a
+			public const int space3 = 2131165226;
 			
 			// aapt resource value: 0x7f070008
 			public const int standard = 2131165192;
@@ -475,14 +472,23 @@ namespace Savar_git
 			// aapt resource value: 0x7f070004
 			public const int terrain = 2131165188;
 			
-			// aapt resource value: 0x7f070010
-			public const int textView1 = 2131165200;
+			// aapt resource value: 0x7f070012
+			public const int textView1 = 2131165202;
 			
 			// aapt resource value: 0x7f070014
 			public const int textView2 = 2131165204;
 			
-			// aapt resource value: 0x7f07002b
-			public const int textView3 = 2131165227;
+			// aapt resource value: 0x7f070016
+			public const int textView3 = 2131165206;
+			
+			// aapt resource value: 0x7f070018
+			public const int textView4 = 2131165208;
+			
+			// aapt resource value: 0x7f07001a
+			public const int textView5 = 2131165210;
+			
+			// aapt resource value: 0x7f07001c
+			public const int textView6 = 2131165212;
 			
 			// aapt resource value: 0x7f070009
 			public const int wide = 2131165193;
@@ -517,28 +523,25 @@ namespace Savar_git
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int funcionario = 2130903040;
+			public const int cadastro_usuario = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int inicio_funcionario = 2130903041;
+			public const int layout1 = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int inicio_motorista = 2130903042;
+			public const int lista_onibus = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int layout1 = 2130903043;
+			public const int login_main = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int lista_onibus = 2130903044;
+			public const int Main = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int Login_Principal = 2130903045;
+			public const int main_funcionario = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int Main = 2130903046;
-			
-			// aapt resource value: 0x7f030007
-			public const int Main_usuario = 2130903047;
+			public const int Main_usuario = 2130903046;
 			
 			static Layout()
 			{
