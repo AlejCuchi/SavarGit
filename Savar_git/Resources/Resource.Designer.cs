@@ -543,6 +543,9 @@ namespace Savar_git
 			// aapt resource value: 0x7f030006
 			public const int Main_usuario = 2130903046;
 			
+			// aapt resource value: 0x7f030007
+			public const int motorista_main = 2130903047;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
