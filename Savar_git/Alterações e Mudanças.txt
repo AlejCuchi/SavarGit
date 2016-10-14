@@ -1,5 +1,0 @@
-﻿Alterar a tabela Onibus para ter um campo combo, com as tres opções{Ativo, Desativo, Manutenção}
-
-Adicionar campo na tabela de clientes para guardar o email.
-
-Criar tela para cadastro dos usuários novos- não vo fazer com o login do google, da mt trampo pra gerenciar.
