@@ -9,7 +9,7 @@ using Savar_git;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = false , Icon = "@drawable/icon")]
+    [Activity(Label = "SavarMap", MainLauncher = false )]
     public class dbMngmt :Activity
     {
         public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";

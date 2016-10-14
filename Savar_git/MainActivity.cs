@@ -13,7 +13,7 @@ using Android;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = false, Icon = "@drawable/icon")]
+    [Activity(Label = "MapScreen", MainLauncher = false)]
 
     public class MainActivity : Activity, IOnMapReadyCallback
     {

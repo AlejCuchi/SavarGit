@@ -13,7 +13,7 @@ using Savar_git;
 
 namespace Savar_git
 {
-    [Activity(Label = "Main_Screen_User", MainLauncher = false, Icon = "@drawable/icon")]
+    [Activity(Label = "Main_Screen_User", MainLauncher = false)]
     public class Main_Screen_User : Activity
     {
         protected Button BtnHorario;
