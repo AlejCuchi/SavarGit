@@ -64,6 +64,17 @@
         android:layout_height="47.5dp"
         android:id="@+id/editText2"
         android:layout_marginBottom="21.5dp" />
+    <TextView
+        android:text="Status do Ônibus"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <EditText
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3" />
     <GridView
         android:minWidth="25px"
         android:minHeight="25px"
