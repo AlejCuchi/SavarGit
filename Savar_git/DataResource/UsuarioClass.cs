@@ -34,8 +34,8 @@ namespace Savar_git
             MySqlDataAdapter MyData = new MySqlDataAdapter();
             DataTable Users = new DataTable();
             cQuery += "USE Savar; " ;
-            cQuery += "Select  * from Savar.cliente";
-            cQuery += "where usuario = '"+User+"' ";
+            cQuery += " Select  * from Savar.cliente";
+            cQuery += " where  usuario = '"+User+"' ";
             if(senha == "")
             {
                 cQuery += "; ";
@@ -50,7 +50,7 @@ namespace Savar_git
 
             MyData.SelectCommand = Command;
             MyData.Fill(Users);
-            if(Users.Rows[0].ToString() != "")
+            if(Users.Rows.Count > 0)
             {
                 lRet = true;
             }
@@ -65,18 +65,19 @@ namespace Savar_git
          *      Senha - Senha do usuário novo.
          *      NomeUser - Nome completo do novo usuário
          */
-        public string InsertUser(string User, string Senha, string NomeUser)
+        public string InsertUser(string User, string Senha, string NomeUser,string email)
         {
             string cLog = "";
+            
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
             string cQuery = "";
 
             cQuery += "Use Savar; ";
-            cQuery += "Insert Into clientes  Values";
-            cQuery += "( '"+User+" ,";
-            cQuery += " '"+Senha+" ,";
-            cQuery += " '"+NomeUser+", 0 ) ;";
+            cQuery += "INSERT INTO cliente (usuario,senha,nome,email)  VALUES";
+            cQuery += "( '"+User+"' ,";
+            cQuery += " '"+Senha+"' ,";
+            cQuery += " '"+NomeUser+"' ,'"+email+"' ) ;";
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {
@@ -89,6 +90,7 @@ namespace Savar_git
                     else
                     {
                         Command.ExecuteNonQuery();
+
                     }
                 }
             }
@@ -96,6 +98,8 @@ namespace Savar_git
             {
                 cLog = ex.ToString();
             }
+            
+            
             return cLog;
         }
 

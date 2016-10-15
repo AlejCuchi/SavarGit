@@ -1,0 +1,2 @@
+﻿Criar um campo na tabela clientes Para duas 2 Opções, 1- Motorista e 2- Usuário. Pra te um 
+controle na hora do login.

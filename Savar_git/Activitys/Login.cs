@@ -13,8 +13,10 @@ using Android.Widget;
 namespace Savar_git.Activitys
 {
     [Activity(Label = "Login", MainLauncher = true) ]
+    
     public class Login : Activity
     {
+        Intent UserLogado;
         EditText EdT_Usuario;
         EditText EdT_Senha;
         Button Btn_CriaConta;
@@ -36,24 +38,24 @@ namespace Savar_git.Activitys
         {
             UsuarioClass UserMngm = new UsuarioClass();
             string LocalUsuario, LocalSenha;
-            Intent UserLogado;
+            
             LocalUsuario = EdT_Usuario.Text;
             LocalSenha = EdT_Senha.Text;
 
             if(LocalUsuario =="" || LocalSenha == "")
             {
-                Toast.MakeText(this,"Usuário Inválido",ToastLength.Long);
+                Toast.MakeText(this,"Usuário Inválido",ToastLength.Long).Show();
             }
             else
             {
                 if(UserMngm.VerificaUsuario(LocalUsuario, LocalSenha))
                 {
-                    UserLogado = new Intent(this, typeof(Main_Screen_User));
-                    StartActivity(UserLogado);
+                    this.UserLogado = new Intent(this, typeof(Main_Screen_User));
+                    StartActivity(this.UserLogado);
                 }
                 else
                 {
-                    Toast.MakeText(this, "Usuário ou senha Incorreto", ToastLength.Long);
+                    Toast.MakeText(this, "Usuário ou senha Incorreto", ToastLength.Long).Show();
                 }
             }
             
@@ -61,7 +63,8 @@ namespace Savar_git.Activitys
 
         private void Btn_CriaConta_Click(object sender, EventArgs e)
         {
-            
+            this.UserLogado = new Intent(this, typeof(Alterar_Usuario));
+            StartActivity(UserLogado);
         }
     }
 }

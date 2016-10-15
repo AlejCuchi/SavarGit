@@ -1765,6 +1765,9 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b007d
 			public const int Btn_LogOut = 2131427453;
 			
+			// aapt resource value: 0x7f0b0097
+			public const int Btn_Salvar = 2131427479;
+			
 			// aapt resource value: 0x7f0b007e
 			public const int Btn_UserConfig = 2131427454;
 			
@@ -1774,8 +1777,17 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b0080
 			public const int Btn_VerMapas = 2131427456;
 			
+			// aapt resource value: 0x7f0b0093
+			public const int Campo_Email = 2131427475;
+			
+			// aapt resource value: 0x7f0b0090
+			public const int Campo_Usuario = 2131427472;
+			
 			// aapt resource value: 0x7f0b006e
 			public const int EdT_Senha = 2131427438;
+			
+			// aapt resource value: 0x7f0b0092
+			public const int EdT_UserSys = 2131427474;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int EdT_Usuario = 2131427436;
@@ -1783,11 +1795,20 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b006a
 			public const int Grd_ListaOnibus = 2131427434;
 			
+			// aapt resource value: 0x7f0b0094
+			public const int PrimeiraSenha = 2131427476;
+			
+			// aapt resource value: 0x7f0b0096
+			public const int SegundaSenha = 2131427478;
+			
 			// aapt resource value: 0x7f0b005d
 			public const int SysLog = 2131427421;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int TesteButton = 2131427420;
+			
+			// aapt resource value: 0x7f0b008f
+			public const int TextView_NomeTela = 2131427471;
 			
 			// aapt resource value: 0x7f0b007c
 			public const int Text_UserIdentify = 2131427452;
@@ -2155,6 +2176,12 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b006d
 			public const int textView3 = 2131427437;
 			
+			// aapt resource value: 0x7f0b0095
+			public const int textView4 = 2131427477;
+			
+			// aapt resource value: 0x7f0b0091
+			public const int textView5 = 2131427473;
+			
 			// aapt resource value: 0x7f0b0088
 			public const int time = 2131427464;
 			
@@ -2354,6 +2381,9 @@ namespace Savar_git
 			
 			// aapt resource value: 0x7f03002a
 			public const int support_simple_spinner_dropdown_item = 2130903082;
+			
+			// aapt resource value: 0x7f03002b
+			public const int Usuario_Crud = 2130903083;
 			
 			static Layout()
 			{
