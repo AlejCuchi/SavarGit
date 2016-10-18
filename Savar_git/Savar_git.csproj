@@ -110,9 +110,11 @@
     <Compile Include="Activitys\Horarios.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Login.cs" />
+    <Compile Include="Activitys\main_admin.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
     <Compile Include="DataResource\UsuarioClass.cs" />
+    <Compile Include="Funcoes.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -126,7 +128,7 @@
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\layout\layout1.axml" />
-    <AndroidResource Include="Resources\layout\main_funcionario.axml">
+    <AndroidResource Include="Resources\layout\main_admin.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\lista_onibus.axml">

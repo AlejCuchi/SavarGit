@@ -25,9 +25,9 @@ namespace Savar_git
          *      
          *      Caso não for passado a senha, será verificado apenas se o usuário existe.
          */ 
-        public bool VerificaUsuario(string User, string senha ="")
+        public string VerificaUsuario(string User, string senha ="")
         {
-            bool lRet = false;
+            string cRet = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
@@ -44,19 +44,54 @@ namespace Savar_git
             {
                 cQuery += "  AND    senha = '" + senha + "'; ";
             }
+
+            try
+            {
+                Command = new MySqlCommand(cQuery, Database.Database);
+                MyData.SelectCommand = Command;
+                MyData.Fill(Users);
+                if (Users.Rows.Count > 0)
+                {
+                    cRet = Users.Rows[0]["tipo_conta"].ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                cRet = ex.ToString();
+            }
+            
             
 
-            Command = new MySqlCommand(cQuery, Database.Database);
-
-            MyData.SelectCommand = Command;
-            MyData.Fill(Users);
-            if(Users.Rows.Count > 0)
+            return cRet;
+        }
+        public DataRow GetUser(string Usuario)
+        {
+            string cRet = "";
+            string cQuery = "";
+            dbMngmt Database = new dbMngmt();
+            MySqlCommand Command;
+            MySqlDataAdapter MyData = new MySqlDataAdapter();
+            DataTable Users = new DataTable();
+            DataRow RowRet = null;
+            cQuery += "USE Savar; ";
+            cQuery += " Select  * from Savar.cliente";
+            cQuery += " where  usuario = '" + Usuario + "' ";
+            try
             {
-                lRet = true;
+                Command = new MySqlCommand(cQuery, Database.Database);
+                MyData.SelectCommand = Command;
+                MyData.Fill(Users);
+                RowRet = Users.Rows[0];
+            }
+            catch (MySqlException ex)
+            {
+                cRet = ex.ToString();
             }
 
-            return lRet;
+
+            return RowRet;
         }
+
         /*Insert User - Inserção de usuários
          *  Função realiza a criação de um novo usuário. 
          *  Retorno String - Caso de erro, retorna o log do erro.
@@ -83,7 +118,7 @@ namespace Savar_git
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User))
+                    if (VerificaUsuario(User).Length == 1)
                     {
                         cLog = "Usuário já existe! ";
                     }
@@ -150,7 +185,7 @@ namespace Savar_git
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User))
+                    if (VerificaUsuario(User).Length == 1)
                     {
                         Command.ExecuteNonQuery();
                     }

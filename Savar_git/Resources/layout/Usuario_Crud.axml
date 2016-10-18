@@ -69,6 +69,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SegundaSenha" />
+    <CheckBox
+        android:text="Funcionário"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Chb_Funcionario"
+        android:visibility="visible"
+        android:checked="true" />
     <Button
         android:text="Salvar"
         android:layout_width="match_parent"

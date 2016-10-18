@@ -37,20 +37,26 @@ namespace Savar_git.Activitys
         private void Btn_Entrar_Click(object sender, EventArgs e)
         {
             UsuarioClass UserMngm = new UsuarioClass();
-            string LocalUsuario, LocalSenha;
+            string LocalUsuario, LocalSenha,TipoUser;
             
             LocalUsuario = EdT_Usuario.Text;
             LocalSenha = EdT_Senha.Text;
-
-            if(LocalUsuario =="" || LocalSenha == "")
+            TipoUser = UserMngm.VerificaUsuario(LocalUsuario, LocalSenha);
+            if (LocalUsuario == "" || LocalSenha == "")
             {
-                Toast.MakeText(this,"Usuário Inválido",ToastLength.Long).Show();
+                Toast.MakeText(this, "Usuário Inválido", ToastLength.Long).Show();
             }
             else
             {
-                if(UserMngm.VerificaUsuario(LocalUsuario, LocalSenha))
+                
+                if (TipoUser == "1")
                 {
-                    this.UserLogado = new Intent(this, typeof(Main_Screen_User));
+                    UserLogado = new Intent(this, typeof(Main_Screen_User));
+                    StartActivity(this.UserLogado);
+                }
+                else if(TipoUser == "2")
+                {
+                    UserLogado = new Intent(this, typeof(Main_Screen_User));
                     StartActivity(this.UserLogado);
                 }
                 else
