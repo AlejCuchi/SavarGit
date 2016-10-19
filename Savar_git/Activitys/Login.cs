@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -12,10 +11,11 @@ using Android.Widget;
 
 namespace Savar_git.Activitys
 {
-    [Activity(Label = "Login", MainLauncher = true) ]
     
+    [Activity(Label = "Login", MainLauncher = true) ]
     public class Login : Activity
     {
+        public UsuarioClass UserMngm = new UsuarioClass();
         Intent UserLogado;
         EditText EdT_Usuario;
         EditText EdT_Senha;
@@ -29,26 +29,21 @@ namespace Savar_git.Activitys
             Btn_Entrar = FindViewById<Button>(Resource.Id.Btn_Entrar);
             EdT_Senha = FindViewById<EditText>(Resource.Id.EdT_Senha);
             EdT_Usuario =  FindViewById<EditText> (Resource.Id.EdT_Usuario);
-
             Btn_Entrar.Click += Btn_Entrar_Click;
             Btn_CriaConta.Click += Btn_CriaConta_Click;
         }
-
         private void Btn_Entrar_Click(object sender, EventArgs e)
         {
-            UsuarioClass UserMngm = new UsuarioClass();
             string LocalUsuario, LocalSenha,TipoUser;
-            
             LocalUsuario = EdT_Usuario.Text;
             LocalSenha = EdT_Senha.Text;
-            TipoUser = UserMngm.VerificaUsuario(LocalUsuario, LocalSenha);
+            TipoUser = this.UserMngm.VerificaUsuario(this,LocalUsuario, LocalSenha);
             if (LocalUsuario == "" || LocalSenha == "")
             {
-                Toast.MakeText(this, "Usuário Inválido", ToastLength.Long).Show();
+                Toast.MakeText(this, "Usuário Inválido ou senha invalido", ToastLength.Long).Show();
             }
-            else
+            else if(UserMngm.Logou(this, LocalUsuario, LocalSenha))
             {
-                
                 if (TipoUser == "1")
                 {
                     UserLogado = new Intent(this, typeof(Main_Screen_User));
@@ -56,17 +51,20 @@ namespace Savar_git.Activitys
                 }
                 else if(TipoUser == "2")
                 {
-                    UserLogado = new Intent(this, typeof(Main_Screen_User));
-                    StartActivity(this.UserLogado);
+                    UserLogado = new Intent(this, typeof(Main_Screen_User));    
+                }
+                else if(TipoUser == "3")
+                {
+                    UserLogado = new Intent(this, typeof(main_admin));
                 }
                 else
                 {
                     Toast.MakeText(this, "Usuário ou senha Incorreto", ToastLength.Long).Show();
+                    return;
                 }
-            }
-            
+                StartActivity(this.UserLogado);
+            }   
         }
-
         private void Btn_CriaConta_Click(object sender, EventArgs e)
         {
             this.UserLogado = new Intent(this, typeof(Alterar_Usuario));

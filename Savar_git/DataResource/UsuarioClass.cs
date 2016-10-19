@@ -14,84 +14,78 @@ using System.Data;
 
 namespace Savar_git
 {
-    class UsuarioClass
+    public class UsuarioClass
     {
+        private string cUserLogado;
+        private string cLog;
         /* Função VerificaUsuario
          * 
          * Retorno Boleano
          * Parametros
+         *      AtualContext - Contexto Atual para a execução do Toast
          *      User = Usuário a ser verificado. Tipo String Obrigatório
          *      senha = Senha do usuário. Tipo String Opcional
          *      
          *      Caso não for passado a senha, será verificado apenas se o usuário existe.
-         */ 
-        public string VerificaUsuario(string User, string senha ="")
+         */
+        public string VerUserLogado()
+        {
+            return this.cUserLogado;
+        }
+        public bool Logou(Context AtualContext, string User, string Senha)
+        {
+            if(VerificaUsuario(AtualContext,User,Senha).Length == 1)
+            {
+                this.cUserLogado = User;
+                return true;
+            }
+            return false;
+        }
+        public string VerificaUsuario(Context AtualContext, string User, string senha ="" )
         {
             string cRet = "";
-            string cQuery = "";
-            dbMngmt Database = new dbMngmt();
-            MySqlCommand Command;
-            MySqlDataAdapter MyData = new MySqlDataAdapter();
-            DataTable Users = new DataTable();
-            cQuery += "USE Savar; " ;
-            cQuery += " Select  * from Savar.cliente";
-            cQuery += " where  usuario = '"+User+"' ";
-            if(senha == "")
+            DataRow UsuarioReg;
+            UsuarioReg = GetUser(User);
+            if(UsuarioReg != null)
             {
-                cQuery += "; ";
+                cRet = UsuarioReg["Tipo_conta"].ToString();
             }
-            else
+            else 
             {
-                cQuery += "  AND    senha = '" + senha + "'; ";
+                Toast.MakeText(AtualContext, this.cLog, ToastLength.Long);
             }
-
-            try
-            {
-                Command = new MySqlCommand(cQuery, Database.Database);
-                MyData.SelectCommand = Command;
-                MyData.Fill(Users);
-                if (Users.Rows.Count > 0)
-                {
-                    cRet = Users.Rows[0]["tipo_conta"].ToString();
-                }
-            }
-            catch (MySqlException ex)
-            {
-                cRet = ex.ToString();
-            }
-            
-            
-
             return cRet;
         }
         public DataRow GetUser(string Usuario)
         {
-            string cRet = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
-            MySqlCommand Command;
             MySqlDataAdapter MyData = new MySqlDataAdapter();
             DataTable Users = new DataTable();
             DataRow RowRet = null;
+
+            this.cLog = "";
             cQuery += "USE Savar; ";
             cQuery += " Select  * from Savar.cliente";
-            cQuery += " where  usuario = '" + Usuario + "' ";
+            cQuery += " where  usuario = '" + Usuario.ToUpper() + "' ";
             try
             {
-                Command = new MySqlCommand(cQuery, Database.Database);
-                MyData.SelectCommand = Command;
-                MyData.Fill(Users);
-                RowRet = Users.Rows[0];
+                if (Database.ConectionTest())
+                {
+                    MyData.SelectCommand = new MySqlCommand(cQuery, Database.Database);
+                    MyData.Fill(Users);
+                }
             }
             catch (MySqlException ex)
             {
-                cRet = ex.ToString();
+                this.cLog = ex.ToString();
             }
-
-
+            if (Users.Rows.Count > 1)
+            {
+                RowRet = Users.Rows[0];
+            }
             return RowRet;
         }
-
         /*Insert User - Inserção de usuários
          *  Função realiza a criação de um novo usuário. 
          *  Retorno String - Caso de erro, retorna o log do erro.
@@ -99,100 +93,117 @@ namespace Savar_git
          *      User - Nome do usuário Para ser incluso
          *      Senha - Senha do usuário novo.
          *      NomeUser - Nome completo do novo usuário
+         *      email - Email do usuário
+         *      AtualContext - Contexto para execução do Toast
          */
-        public string InsertUser(string User, string Senha, string NomeUser,string email)
+        public string InsertUser(string User, string Senha, string NomeUser,string email,Context AtualContext)
         {
             string cLog = "";
-            
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
             string cQuery = "";
-
             cQuery += "Use Savar; ";
-            cQuery += "INSERT INTO cliente (usuario,senha,nome,email)  VALUES";
-            cQuery += "( '"+User+"' ,";
+            cQuery += "INSERT INTO Savar.cliente (usuario,senha,nome,email,Tipo_conta)  VALUES";
+            cQuery += "( '"+User.ToUpper()+"' ,";
             cQuery += " '"+Senha+"' ,";
-            cQuery += " '"+NomeUser+"' ,'"+email+"' ) ;";
+            cQuery += " '"+NomeUser+"' ,'"+email+"','1' ) ;";
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User).Length == 1)
+                    if (VerificaUsuario(AtualContext, User.ToUpper()).Length == 1)
                     {
                         cLog = "Usuário já existe! ";
                     }
                     else
                     {
                         Command.ExecuteNonQuery();
-
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                cLog = ex.ToString();
+                cLog += ex.ToString();
             }
-            
-            
             return cLog;
         }
-
         /*UpdateUser - Atualização de algum dado do usuário
          * Atualiza senha, nome e pontuãção do usuário.
          * Retorno String, retorna algum erro caso exista
          * Parametros
          *      User - Nome do usuário a ser alterado
-         *      Param - Parametro com o valor da açao a ser tomada
-         *          1- Troca de senha
-         *          2- Troca de Nome do usuário
-         *          3- Atualização da pontuação do usuário
-         *      ValorParam - Novo valor a ser substituido.
-         *      
+         *      AtualContext - Conexto da tela, para execução do Toast
+         *      User - Nome do usuário para encontrar no banco de dados
+         *      Pontos - Nova quantidade de pontos do usuário
+         *      Senha - Nova Senha do usuário
+         *      Email - Novo Email do usuário
+         *      Nome - Novo Nome do usuário
+         *      Tipo conta - Altera o tipo da conta do usuário.
          */
-        public string UpdateUser(string User, string Param , string ValorParam="")
+        public string UpdateUser(Context AtualContext, string User, string Pontos = "", string Senha="" , string Email="",string Nome="",string TipoConta="")
         {
             string cLog = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
-
             cQuery += "USE Savar; ";
             cQuery += "UPDATE cliente";
             cQuery += "SET ";
-            if (Param =="1" )
+            if (Senha != "" )
             {
-                cQuery += "senha = '"+ValorParam+" ";
+                cQuery += " senha = '"+ Senha +" ";
+                if((Pontos+Email+Nome+TipoConta).Length > 0)
+                {
+                    cQuery += " , ";
+                }
             }
-            else if(Param == "2")
+            if(Nome != "")
             {
-                cQuery += " nome = '" + ValorParam + " ";
+                cQuery += " nome = '" + Nome + " ";
+                if ((Pontos + Email + TipoConta).Length > 0)
+                {
+                    cQuery += " , ";
+                }
             }
-            else if(Param == "3")
+            if(Pontos != "")
             {
-                cQuery += " pontos = " + ValorParam + " ";
+                cQuery += " pontos = " + Pontos + " ";
+                if ((Email + TipoConta).Length > 0)
+                {
+                    cQuery += " , ";
+                }
             }
-            else
+            if(TipoConta != "")
             {
-                cLog = "Parametro de processo invalido;";
+                cQuery += " Tipo_conta = '" + TipoConta + " ";
+                if (Email != "")
+                {
+                    cQuery += " , ";
+                }
             }
-            cQuery += "Where usuario = '" +User +"' ;";
-
-
+            if(Email != "")
+            {
+                cQuery += " email = '" + Email + "' ";
+            }
+            cQuery += "Where usuario = '" + User.ToUpper() + "' ;";
             Command = new MySqlCommand(cQuery, Database.Database);
-
             try
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User).Length == 1)
+                    if (VerificaUsuario(AtualContext, User).Length == 1)
                     {
                         Command.ExecuteNonQuery();
                     }
                     else
                     {
-                        cLog = "Não foi possível encontrar o usuário " + User + "!";
+                        cLog = "Não foi possível encontrar o usuário " + User.ToUpper() + "!";
                     }
+                }
+                else
+                {
+                    cLog = "Erro de conexão com o banco de dados";
                 }
             }
             catch (MySqlException ex)

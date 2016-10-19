@@ -28,7 +28,6 @@ namespace Savar_git
             base.OnCreate(savedInstanceState);
             string Call = Intent.GetStringExtra("Tela") ?? "";
             SetContentView(Resource.Layout.Usuario_Crud);
-
             TxV_DescTela = FindViewById<TextView>(Resource.Id.TextView_NomeTela);
             EdT_Nome = FindViewById<EditText>(Resource.Id.Campo_Usuario);
             EdT_Usuario = FindViewById<EditText>(Resource.Id.EdT_UserSys);
@@ -37,13 +36,11 @@ namespace Savar_git
             EdT_ConfirmaSenha = FindViewById<EditText>(Resource.Id.SegundaSenha);
             Btn_Salvar = FindViewById<Button>(Resource.Id.Btn_Salvar);
             Chb_Func = FindViewById<CheckBox>(Resource.Id.Chb_Funcionario);
-
             Chb_Func.Visibility = Call == "AdmCall" ? ViewStates.Visible : ViewStates.Gone;
             TxV_DescTela.Text = Call == "AdmCall" ? "Alterar Usuário" : "Criando Usuários";
             Btn_Salvar.Click += Btn_Salvar_Click;
             EdT_Usuario.FocusChange += EdT_Usuario_FocusChange;
         }
-
         private void EdT_Usuario_FocusChange(object sender, View.FocusChangeEventArgs e)
         {
             UsuarioClass UserMngm = new UsuarioClass();
@@ -53,7 +50,6 @@ namespace Savar_git
             {
                 EdT_Nome.Text = InfoUsuario["nome"].ToString();
                 EdT_Usuario.Text = InfoUsuario["email"].ToString();
-
                 if (InfoUsuario["Tipo_conta"].ToString() == "1")
                 {
                     Chb_Func.Checked = false;
@@ -91,7 +87,7 @@ namespace Savar_git
                 lValida = false;
                 
             }
-            if (lValida && UserMng.VerificaUsuario(Usuario).Length == 1)
+            if (lValida && UserMng.VerificaUsuario(this,Usuario,"").Length == 1)
             {
                 cLog = "Usuário Existente!";
                 lValida = false;
@@ -108,11 +104,11 @@ namespace Savar_git
                 cLog = "Nome de usuário é muito curto!";
                 lValida = false;
             }
-            if(lValida && (cLog = UserMng.InsertUser(Usuario, Senha1, NomeCompleto,EmailUsuario)) != "")
+            if(lValida && (cLog = UserMng.InsertUser(Usuario, Senha1, NomeCompleto,EmailUsuario,this)) != "")
             {
                 cLog = "Problemas na inclusão do usuário : " + cLog;
             }
-            else if (lValida)
+            else if (lValida && cLog.Length <1)
             {
                 cLog = "Usuário Criado com sucesso!!!"; 
             }
