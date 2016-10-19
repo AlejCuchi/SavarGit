@@ -6,10 +6,11 @@ using Android.Widget;
 using MySql.Data.MySqlClient;
 using System.Data;
 using Savar_git;
+using Android.Content;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = false , Icon = "@drawable/icon")]
+    [Activity(Label = "SavarMap", MainLauncher = false )]
     public class dbMngmt :Activity
     {
         public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
@@ -19,8 +20,6 @@ namespace Savar_git
         //private EditText TesteWIndow;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            
-            
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.layout1);
@@ -42,6 +41,8 @@ namespace Savar_git
             }
             
         }
+
+        
 /**********************************************
     Testa conexão com o banco de dados.
 

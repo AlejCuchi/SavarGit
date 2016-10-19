@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Savar_git
 {
-    [Activity(Label = "Horarios", MainLauncher = false, Icon = "@drawable/icon")]
+    [Activity(Label = "Horarios", MainLauncher = false)]
     public class Horarios : Activity
     {
 

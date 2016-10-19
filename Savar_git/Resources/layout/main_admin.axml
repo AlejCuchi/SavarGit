@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="188.0dp"
+        android:id="@+id/space1" />
+    <Button
+        android:text="Onibus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_AdmOnibus" />
+    <Button
+        android:text="Funcionarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_AdmFunc" />
+    <Button
+        android:text="Pontuacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_AdmPontos" />
+    <Button
+        android:text="Rotas e Paradas "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Btn_RtsPrds" />
+</LinearLayout>

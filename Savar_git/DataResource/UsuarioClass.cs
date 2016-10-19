@@ -25,17 +25,17 @@ namespace Savar_git
          *      
          *      Caso não for passado a senha, será verificado apenas se o usuário existe.
          */ 
-        public bool VerificaUsuario(string User, string senha ="")
+        public string VerificaUsuario(string User, string senha ="")
         {
-            bool lRet = false;
+            string cRet = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
             MySqlDataAdapter MyData = new MySqlDataAdapter();
             DataTable Users = new DataTable();
             cQuery += "USE Savar; " ;
-            cQuery += "Select  * from Savar.cliente";
-            cQuery += "where usuario = '"+User+"' ";
+            cQuery += " Select  * from Savar.cliente";
+            cQuery += " where  usuario = '"+User+"' ";
             if(senha == "")
             {
                 cQuery += "; ";
@@ -44,19 +44,54 @@ namespace Savar_git
             {
                 cQuery += "  AND    senha = '" + senha + "'; ";
             }
+
+            try
+            {
+                Command = new MySqlCommand(cQuery, Database.Database);
+                MyData.SelectCommand = Command;
+                MyData.Fill(Users);
+                if (Users.Rows.Count > 0)
+                {
+                    cRet = Users.Rows[0]["tipo_conta"].ToString();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                cRet = ex.ToString();
+            }
+            
             
 
-            Command = new MySqlCommand(cQuery, Database.Database);
-
-            MyData.SelectCommand = Command;
-            MyData.Fill(Users);
-            if(Users.Rows[0].ToString() != "")
+            return cRet;
+        }
+        public DataRow GetUser(string Usuario)
+        {
+            string cRet = "";
+            string cQuery = "";
+            dbMngmt Database = new dbMngmt();
+            MySqlCommand Command;
+            MySqlDataAdapter MyData = new MySqlDataAdapter();
+            DataTable Users = new DataTable();
+            DataRow RowRet = null;
+            cQuery += "USE Savar; ";
+            cQuery += " Select  * from Savar.cliente";
+            cQuery += " where  usuario = '" + Usuario + "' ";
+            try
             {
-                lRet = true;
+                Command = new MySqlCommand(cQuery, Database.Database);
+                MyData.SelectCommand = Command;
+                MyData.Fill(Users);
+                RowRet = Users.Rows[0];
+            }
+            catch (MySqlException ex)
+            {
+                cRet = ex.ToString();
             }
 
-            return lRet;
+
+            return RowRet;
         }
+
         /*Insert User - Inserção de usuários
          *  Função realiza a criação de um novo usuário. 
          *  Retorno String - Caso de erro, retorna o log do erro.
@@ -65,30 +100,32 @@ namespace Savar_git
          *      Senha - Senha do usuário novo.
          *      NomeUser - Nome completo do novo usuário
          */
-        public string InsertUser(string User, string Senha, string NomeUser)
+        public string InsertUser(string User, string Senha, string NomeUser,string email)
         {
             string cLog = "";
+            
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
             string cQuery = "";
 
             cQuery += "Use Savar; ";
-            cQuery += "Insert Into clientes  Values";
-            cQuery += "( '"+User+" ,";
-            cQuery += " '"+Senha+" ,";
-            cQuery += " '"+NomeUser+", 0 ) ;";
+            cQuery += "INSERT INTO cliente (usuario,senha,nome,email)  VALUES";
+            cQuery += "( '"+User+"' ,";
+            cQuery += " '"+Senha+"' ,";
+            cQuery += " '"+NomeUser+"' ,'"+email+"' ) ;";
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User))
+                    if (VerificaUsuario(User).Length == 1)
                     {
                         cLog = "Usuário já existe! ";
                     }
                     else
                     {
                         Command.ExecuteNonQuery();
+
                     }
                 }
             }
@@ -96,6 +133,8 @@ namespace Savar_git
             {
                 cLog = ex.ToString();
             }
+            
+            
             return cLog;
         }
 
@@ -146,7 +185,7 @@ namespace Savar_git
             {
                 if (Database.ConectionTest())
                 {
-                    if (VerificaUsuario(User))
+                    if (VerificaUsuario(User).Length == 1)
                     {
                         Command.ExecuteNonQuery();
                     }
