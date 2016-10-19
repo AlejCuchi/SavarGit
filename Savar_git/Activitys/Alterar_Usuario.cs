@@ -9,24 +9,28 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Data;
 
 namespace Savar_git
 {
     [Activity(Label = "Alterar_Usuario")]
     public class Alterar_Usuario : Activity
     {
-        TextView TxV_DescTela;
-        EditText EdT_Nome;
-        EditText EdT_Usuario;
-        EditText EdT_Email;
-        EditText EdT_Senha;
-        EditText EdT_ConfirmaSenha;
-        Button Btn_Salvar;
-        CheckBox Chb_Func;
+        private UsuarioClass UserMngm  = new UsuarioClass();
+        private TextView TxV_DescTela;
+        private EditText EdT_Nome;
+        private EditText EdT_Usuario;
+        private EditText EdT_Email;
+        private EditText EdT_Senha;
+        private EditText EdT_ConfirmaSenha;
+        private Button Btn_Salvar;
+        private CheckBox Chb_Func;
+        private string cUsuario;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             string Call = Intent.GetStringExtra("Tela") ?? "";
+            this.cUsuario = Intent.GetStringExtra("User") ?? "";
             SetContentView(Resource.Layout.Usuario_Crud);
             TxV_DescTela = FindViewById<TextView>(Resource.Id.TextView_NomeTela);
             EdT_Nome = FindViewById<EditText>(Resource.Id.Campo_Usuario);
@@ -37,13 +41,27 @@ namespace Savar_git
             Btn_Salvar = FindViewById<Button>(Resource.Id.Btn_Salvar);
             Chb_Func = FindViewById<CheckBox>(Resource.Id.Chb_Funcionario);
             Chb_Func.Visibility = Call == "AdmCall" ? ViewStates.Visible : ViewStates.Gone;
-            TxV_DescTela.Text = Call == "AdmCall" ? "Alterar Usuário" : "Criando Usuários";
             Btn_Salvar.Click += Btn_Salvar_Click;
-            EdT_Usuario.FocusChange += EdT_Usuario_FocusChange;
+            EdT_Usuario.Enabled = (Call != "Main_Screen_User");
+            if (Call != "")
+            {
+                EdT_Usuario.FocusChange += EdT_Usuario_FocusChange;
+            }
+            if(cUsuario != "")
+            {
+                FillFields();
+            }
+        }
+        private void FillFields()
+        {
+            DataRow Usuario;
+            Usuario = UserMngm.GetUser(this.cUsuario);
+            EdT_Nome.Text = Usuario["Nome"].ToString();
+            EdT_Usuario.Text = Usuario["Usuario"].ToString();
+            EdT_Email.Text = Usuario["Email"].ToString();
         }
         private void EdT_Usuario_FocusChange(object sender, View.FocusChangeEventArgs e)
         {
-            UsuarioClass UserMngm = new UsuarioClass();
             System.Data.DataRow InfoUsuario;
             InfoUsuario = UserMngm.GetUser(EdT_Usuario.Text);
             if (InfoUsuario != null)
@@ -70,24 +88,20 @@ namespace Savar_git
             EmailUsuario = EdT_Email.Text;
             Senha1 = EdT_Senha.Text;
             Senha2 = EdT_ConfirmaSenha.Text;
-            
-            if (Senha1 != Senha2 )
+            if(cUsuario == "")
             {
-                cLog = "As senhas não são iguais";
-                lValida = false;    
+                lValida = (cLog = ValidaSenha(Senha1, Senha2)) == "";
             }
-            else if(lValida && Senha1.Length < 8)
+            else if(EdT_Senha.Text != "")
             {
-                cLog = "A senha não contem os requisitos minimos de segurança";
-                lValida = false;   
+                lValida = (cLog = ValidaSenha(Senha1, Senha2)) == "";
             }
             if(lValida && NomeCompleto == "")
             {
                 cLog = "Por favor, informe seu nome completo";
                 lValida = false;
-                
             }
-            if (lValida && UserMng.VerificaUsuario(this,Usuario,"").Length == 1)
+            if (cUsuario == "" && lValida && UserMng.VerificaUsuario(this,Usuario,"").Length == 1)
             {
                 cLog = "Usuário Existente!";
                 lValida = false;
@@ -96,15 +110,14 @@ namespace Savar_git
             {
                 cLog = "Formato de email incorreto";
                 lValida = false;
-
             }
             if (lValida && Usuario.Length < 6)
             {
-
                 cLog = "Nome de usuário é muito curto!";
                 lValida = false;
             }
-            if(lValida && (cLog = UserMng.InsertUser(Usuario, Senha1, NomeCompleto,EmailUsuario,this)) != "")
+            if(lValida && (cLog = cUsuario == "" ? UserMng.InsertUser(Usuario, Senha1, NomeCompleto,EmailUsuario,this): 
+                                                   UserMng.UpdateUser(this,Usuario,"",Senha1,EmailUsuario,NomeCompleto)) != "")
             {
                 cLog = "Problemas na inclusão do usuário : " + cLog;
             }
@@ -113,6 +126,21 @@ namespace Savar_git
                 cLog = "Usuário Criado com sucesso!!!"; 
             }
             Toast.MakeText(this, cLog, ToastLength.Long).Show();
+        }
+
+        private string ValidaSenha(string Senha1, string Senha2)
+        {
+            string cLog = "";
+            if (Senha1 != Senha2)
+            {
+                cLog = "As senhas não são iguais";
+            }
+            else if (Senha1.Length < 8)
+            {
+                cLog = "A senha não contem os requisitos minimos de segurança";
+                
+            }
+            return cLog;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Savar_git
 {
     public class UsuarioClass
     {
+        private UsuarioClass UserLogado;
         private string cUserLogado;
         private string cLog;
         /* Função VerificaUsuario
@@ -28,6 +29,14 @@ namespace Savar_git
          *      
          *      Caso não for passado a senha, será verificado apenas se o usuário existe.
          */
+        public UsuarioClass(UsuarioClass UserAtual = null)
+        {
+            if(UserAtual != null)
+            {
+                this.UserLogado = UserAtual;
+            }
+        }
+
         public string VerUserLogado()
         {
             return this.cUserLogado;
@@ -80,7 +89,7 @@ namespace Savar_git
             {
                 this.cLog = ex.ToString();
             }
-            if (Users.Rows.Count > 1)
+            if (Users.Rows.Count > 0)
             {
                 RowRet = Users.Rows[0];
             }
@@ -149,7 +158,7 @@ namespace Savar_git
             MySqlCommand Command;
             cQuery += "USE Savar; ";
             cQuery += "UPDATE cliente";
-            cQuery += "SET ";
+            cQuery += " SET ";
             if (Senha != "" )
             {
                 cQuery += " senha = '"+ Senha +" ";
@@ -160,7 +169,7 @@ namespace Savar_git
             }
             if(Nome != "")
             {
-                cQuery += " nome = '" + Nome + " ";
+                cQuery += " nome = '" + Nome + "' ";
                 if ((Pontos + Email + TipoConta).Length > 0)
                 {
                     cQuery += " , ";
@@ -186,7 +195,7 @@ namespace Savar_git
             {
                 cQuery += " email = '" + Email + "' ";
             }
-            cQuery += "Where usuario = '" + User.ToUpper() + "' ;";
+            cQuery += "Where usuario = '" + User.TrimEnd().TrimStart().ToUpper() + "' ;";
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {

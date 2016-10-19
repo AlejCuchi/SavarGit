@@ -47,6 +47,7 @@ namespace Savar_git.Activitys
                 if (TipoUser == "1")
                 {
                     UserLogado = new Intent(this, typeof(Main_Screen_User));
+                    UserLogado.PutExtra("Tela", UserMngm.VerUserLogado());
                     StartActivity(this.UserLogado);
                 }
                 else if(TipoUser == "2")

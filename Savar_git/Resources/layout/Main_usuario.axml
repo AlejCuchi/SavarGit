@@ -6,37 +6,32 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="81.0dp"
-        android:id="@+id/linearLayout2">
-        <TextView
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="254.0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/Text_UserIdentify"
-            android:gravity="center" />
+        android:layout_height="50.0dp"
+        android:id="@+id/linearLayout2"
+        android:minWidth="25px"
+        android:minHeight="25px">
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout3">
-            <Button
-                android:text="Sair"
-                android:layout_width="match_parent"
-                android:layout_height="40.5dp"
-                android:id="@+id/Btn_LogOut"
-                android:textSize="22dp" />
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="241.5dp"
+                android:layout_height="match_parent"
+                android:id="@+id/TeV_UserName"
+                android:gravity="center" />
             <Button
                 android:text="Configuração"
-                android:layout_width="match_parent"
-                android:layout_height="39.5dp"
-                android:id="@+id/Btn_UserConfig"
-                android:textSize="22px" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/Btn_ConfgUser" />
         </LinearLayout>
     </LinearLayout>
     <Space
         android:layout_width="match_parent"
-        android:layout_height="77.5dp"
+        android:layout_height="104.0dp"
         android:id="@+id/space1" />
     <Button
         android:text="Horários"
@@ -48,9 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Btn_VerMapas" />
-    <Button
-        android:text="Jogos"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Btn_Jogos" />
+        android:layout_height="246.0dp"
+        android:id="@+id/space2" />
 </LinearLayout>
