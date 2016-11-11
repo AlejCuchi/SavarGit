@@ -9,7 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Savar_git.Activitys
+namespace Savar_git
 {
     
     [Activity(Label = "Login", MainLauncher = true) ]
@@ -47,8 +47,7 @@ namespace Savar_git.Activitys
                 if (TipoUser == "1")
                 {
                     UserLogado = new Intent(this, typeof(Main_Screen_User));
-                    UserLogado.PutExtra("Tela", UserMngm.VerUserLogado());
-                    StartActivity(this.UserLogado);
+                    
                 }
                 else if(TipoUser == "2")
                 {
@@ -63,6 +62,7 @@ namespace Savar_git.Activitys
                     Toast.MakeText(this, "Usuário ou senha Incorreto", ToastLength.Long).Show();
                     return;
                 }
+                UserLogado.PutExtra("Tela", UserMngm.VerUserLogado());
                 StartActivity(this.UserLogado);
             }   
         }

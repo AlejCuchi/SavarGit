@@ -16,7 +16,7 @@ namespace Savar_git
 {
     public class UsuarioClass
     {
-        private UsuarioClass UserLogado;
+        //private UsuarioClass UserLogado;
         private string cUserLogado;
         private string cLog;
         /* Função VerificaUsuario
@@ -29,13 +29,7 @@ namespace Savar_git
          *      
          *      Caso não for passado a senha, será verificado apenas se o usuário existe.
          */
-        public UsuarioClass(UsuarioClass UserAtual = null)
-        {
-            if(UserAtual != null)
-            {
-                this.UserLogado = UserAtual;
-            }
-        }
+        
 
         public string VerUserLogado()
         {

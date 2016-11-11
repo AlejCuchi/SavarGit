@@ -14,14 +14,14 @@ using MySql.Data.MySqlClient;
 
 namespace Savar_git
 {
-    class OnibusClass // Collunm : numero_onibus:int | placa:varchar | X:double | y:double | z:double | rota:varchar | 
+    public class OnibusClass // Collunm : numero_onibus:int | placa:varchar | X:double | y:double | z:double | rota:varchar | 
     {
-        private string ConnectionString = "";
+        
+        public string Onibus_Placa { get; set; }
+        public int Onibus_Numero { get; set; }
+        public string Onibus_Status { get; set; }
 
-        public OnibusClass(string StringConect)
-        {
-            ConnectionString = StringConect;
-        }
+        
 /**************************************
  * Função InputOnibus - Função para realizar inclusão de novo ônibus
  * Parâmetros 
@@ -91,18 +91,35 @@ namespace Savar_git
             string cQuery = "";
 
             cQuery += "USE Savar; ";
-            cQuery += "Select * from Savar.onibus ";
-            cQuery += "WHERE ";
-            
-            if(cRota == "")
+            cQuery += "SELECT * FROM Savar.onibus ";
+            if(nNumero != 0 || cPlaca != "" || cRota != "")
             {
-                cQuery += "numero_onibus = " + nNumero.ToString() + " AND ";
-                cQuery += "placa = " + cPlaca + " ;";
+                cQuery += " WHERE ";
             }
-            else
+            if(nNumero != 0 )
             {
-                cQuery = " rota = " + cRota + " ;";
+                cQuery += " numero_onibus = " + nNumero.ToString();
+                if(cPlaca != "" || cRota != "")
+                {
+                    cQuery += " , ";
+                }
             }
+            if(cPlaca != "" )
+            {
+                cQuery += " placa = '" +cPlaca + "' "  ;
+                if (cRota != "")
+                {
+                    cQuery += " , ";
+
+                }
+            }
+            if(cRota != "")
+            {
+                cQuery += " rota = '" +cRota+ "' ";
+            }
+
+            cQuery += "; ";
+
             Command = new MySqlCommand(cQuery, Database.Database);
             try
             {

@@ -9,11 +9,11 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Savar_git;
+
 
 namespace Savar_git
 {
-    [Activity(Label = "Main_Screen_User", MainLauncher = false)]
+    [Activity(Label = "Main_Screen_User")]
     public class Main_Screen_User : Activity
     {
         private string cUser;

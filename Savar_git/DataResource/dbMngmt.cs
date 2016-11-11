@@ -5,12 +5,10 @@ using Android.OS;
 using Android.Widget;
 using MySql.Data.MySqlClient;
 using System.Data;
-using Savar_git;
-using Android.Content;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap", MainLauncher = false )]
+    [Activity(Label = "SavarMap")]
     public class dbMngmt :Activity
     {
         public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
@@ -34,7 +32,7 @@ namespace Savar_git
         private void NewButton_Click(object sender, EventArgs e)
         {
             SysLogVIewer.Text = "Teste base de dados.";
-            OnibusClass obj = new OnibusClass(ConectString);
+            OnibusClass obj = new OnibusClass();
             if (ConectionTest())
             {
                 SysLogVIewer.Text =  obj.UpdateOnibus("111", "aaa-3333",111,123,444);

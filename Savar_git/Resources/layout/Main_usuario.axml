@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
-                android:text="Medium Text"
+                android:text="Savar"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="241.5dp"
+                android:layout_width="222.5dp"
                 android:layout_height="match_parent"
                 android:id="@+id/TeV_UserName"
                 android:gravity="center" />

@@ -1,84 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:layout_marginBottom="11.0dp">
+        android:layout_height="51.0dp"
+        android:id="@+id/linearLayout2"
+        android:weightSum="1.0">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button1"
-            android:layout_marginRight="82.0dp"
-            android:text="SALVAR" />
+            android:text="Salvar"
+            android:layout_width="0dip"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1" />
         <Button
-            android:text="ALTERAR"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button2"
-            android:layout_marginRight="67.0dp" />
+            android:text="Alterar"
+            android:layout_width="0dip"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" />
         <Button
-            android:text="EXCLUIR"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:text="Excluir"
+            android:layout_width="0dip"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
             android:id="@+id/button3" />
+        <Button
+            android:text="Buscar"
+            android:layout_width="0dip"
+            android:layout_weight=".25"
+            android:layout_height="match_parent"
+            android:id="@+id/Btn_BuscarOnibus" />
     </LinearLayout>
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2">
-        <TextView
-            android:text="Número do Ônibus"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView1" />
-    </LinearLayout>
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Txt_OnibusNumero" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="206.5dp"
         android:id="@+id/linearLayout3">
-        <TextView
-            android:text="Placa"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="33.0dp"
+            android:weightSum="1.0"
+            android:id="@+id/linearLayout4">
+            <TextView
+                android:text="Numero veículo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/textView3"
+                android:gravity="center" />
+            <TextView
+                android:text="Placa"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/textView4"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="50.5dp"
+            android:weightSum="1.0"
+            android:id="@+id/linearLayout5">
+            <EditText
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/Txt_OnibusNumero" />
+            <EditText
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/Txt_PlacaOnibus" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="28.5dp"
+            android:weightSum="1.0"
+            android:id="@+id/linearLayout6">
+            <TextView
+                android:text="Rota"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/textView5"
+                android:gravity="center" />
+            <TextView
+                android:text="Status do Veículo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/textView6"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="58.0dp"
+            android:weightSum="1.0"
+            android:id="@+id/linearLayout7">
+            <EditText
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/Txt_Rotas" />
+            <EditText
+                android:layout_width="0dip"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:id="@+id/Txt_StatusVeic"
+                android:editable="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/Txt_PlacaOnibus" />
+            android:weightSum="1.0"
+            android:id="@+id/linearLayout8">
+            <TextView
+                android:text="Veiculo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".3"
+                android:layout_height="match_parent"
+                android:id="@+id/textView7"
+                android:gravity="center" />
+            <TextView
+                android:text="Placa"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".4"
+                android:layout_height="match_parent"
+                android:id="@+id/textView8"
+                android:gravity="center" />
+            <TextView
+                android:text="Status"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dip"
+                android:layout_weight=".3"
+                android:layout_height="match_parent"
+                android:id="@+id/textView9"
+                android:gravity="center" />
+        </LinearLayout>
     </LinearLayout>
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="47.5dp"
-        android:id="@+id/editText2"
-        android:layout_marginBottom="21.5dp" />
-    <TextView
-        android:text="Status do Ônibus"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3" />
-    <GridView
+    <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/Grd_ListaOnibus" />
+        android:id="@+id/LiV_Onibus" />
 </LinearLayout>

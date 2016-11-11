@@ -8,7 +8,6 @@ using Android.OS;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
-using Savar_git;
 using Android;
 
 namespace Savar_git
@@ -17,11 +16,14 @@ namespace Savar_git
 
     public class MainActivity : Activity, IOnMapReadyCallback
     {
+        private string _NumOnibus { get; set; }
+        private string PlacaOnibus { get; set; }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+            
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
             mapFragment.GetMapAsync(this);
 

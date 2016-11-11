@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="Hello">Hello World, Click Me!</string>
-  <string name="ApplicationName">SavarMap</string>
-  <string name="GoogleKey">AIzaSyCABDuekKkDLsVgtiAPtE20j3Bpz_Q6CTc	 </string>
-  <string name="title_text">Google Sign-In\nQuickstart</string>
-  <!-- Sign-in status messages -->
-  <string name="signed_in_fmt">Signed in as: {0}</string>
-  <string name="signing_in">Signing in…</string>
-  <string name="signed_out">Signed out</string>
 
-  <!-- Google Play Services error for Toast -->
-  <string name="play_services_error_fmt">Google Play Services Error: {0}</string>
-
-  <!-- Button labels -->
-  <string name="sign_out">Sign Out</string>
-  <string name="disconnect">Disconnect</string>
-
-  <!-- Content Description for images -->
-  <string name="desc_google_icon">Google Logo</string>
+  <string name="ApplicationName">Savar_git</string>
+  <string name="GoogleKey">AIzaSyCTLq1UrDdnvcljzsMwL4UV6a1lBMI8xiQ</string>
 </resources>
