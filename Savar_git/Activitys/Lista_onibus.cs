@@ -5,8 +5,7 @@ using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Widget;
-using Android.Locations;
-using System.Threading.Tasks;
+
 namespace Savar_git
 {
     [Activity(Label = "Lista_onibus")]
@@ -17,33 +16,37 @@ namespace Savar_git
         private EditText RotasOnibus;
         private ListView DataGridOnibus;
         private Button BuscaOnibus;
-        private Location _currentLocation;
-        private LocationManager _locationManager;
-        private string _ProviderGps;
-        private string _PosX, _PosY;
-        private string cLog;
+        
         private List<OnibusClass> ListOnibus = new List<OnibusClass>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             base.OnCreate(savedInstanceState);
+            
             SetContentView(Resource.Layout.lista_onibus);
             DataGridOnibus = FindViewById<ListView>(Resource.Id.LiV_Onibus);
             BuscaOnibus = FindViewById<Button>(Resource.Id.Btn_BuscarOnibus);
             BuscaOnibus.Click += BuscaOnibus_Click;
             DataGridOnibus.ItemClick += DataGridOnibus_ItemClick;
-            InitializeLocationManager();
+            
         }
 
         private void DataGridOnibus_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             OnibusClass OnibusSelecionado = ListOnibus[e.Position];
+            
             string cPlaca = OnibusSelecionado.Onibus_Placa;
             string cNumero = OnibusSelecionado.Onibus_Numero.ToString();
-
+            Android.Content.Intent MapsOnibus;
             
+            if (OnibusSelecionado.ExisteOnibus(Convert.ToInt32(cNumero), cPlaca))
+            {
+                MapsOnibus = new Android.Content.Intent(this, typeof(MapScreen));
+                MapsOnibus.PutExtra("NumeOnibus", cNumero);
+                MapsOnibus.PutExtra("PlacaOnibus", cPlaca);
+                StartActivity(MapsOnibus);
+            }   
         }
-        
-
         private void BuscaOnibus_Click(object sender, EventArgs e)
         {
             ListView DataList = FindViewById<ListView>(Resource.Id.LiV_Onibus);
@@ -83,68 +86,9 @@ namespace Savar_git
             }
 
         }
-        private void InitializeLocationManager()
-        {
-            _locationManager = (LocationManager)GetSystemService(LocationService);
-            Criteria CriteriosGPS = new Criteria { Accuracy = Accuracy.Fine };
-
-            IList<string> ProvidersDisponiveis = _locationManager.GetProviders(CriteriosGPS, true);
-
-            if (ProvidersDisponiveis.Any())
-            {
-                _ProviderGps = ProvidersDisponiveis.First();
-            }
-            else
-            {
-                _ProviderGps = string.Empty;
-            }
-        }
         
         
-        async Task<Address> ReverseGeocodeCurrentLocation()
-        {
-            Geocoder geocoder = new Geocoder(this);
-            IList<Address> addressList =
-                await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
-
-            Address address = addressList.FirstOrDefault();
-            return address;
-        }
-        private string DisplayAddress(Address address)
-        {
-            string cRet = "";
-            if (address != null)
-            {
-                StringBuilder deviceAddress = new StringBuilder();
-                for (int i = 0; i < address.MaxAddressLineIndex; i++)
-                {
-                    deviceAddress.AppendLine(address.GetAddressLine(i));
-                }
-                // Remove the last comma from the end of the address.
-                cRet = deviceAddress.ToString();
-            }
-            else
-            {
-                cLog += "\n\n Unable to determine the address. Try again in a few minutes.";
-            }
-
-            return cRet;
-        }
-
-        public async void OnLocationChanged(Location location)
-        {
-            _currentLocation = location;
-            if (_currentLocation == null)
-            {
-                cLog += "\n\n Unable to determine your location. Try again in a short while.";
-            }
-            else
-            {
-                _PosX = _currentLocation.Latitude.ToString();
-                _PosY = _currentLocation.Longitude.ToString();
-                Address address = await ReverseGeocodeCurrentLocation();
-                
-            }
-        }
+        
+        
     }
 }

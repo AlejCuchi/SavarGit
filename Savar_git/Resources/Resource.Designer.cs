@@ -1738,6 +1738,9 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b0084
 			public const int Btn_AdmPontos = 2131427460;
 			
+			// aapt resource value: 0x7f0b0098
+			public const int Btn_BuscaUser = 2131427480;
+			
 			// aapt resource value: 0x7f0b0066
 			public const int Btn_BuscarOnibus = 2131427430;
 			
@@ -1753,8 +1756,8 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b0085
 			public const int Btn_RtsPrds = 2131427461;
 			
-			// aapt resource value: 0x7f0b009e
-			public const int Btn_Salvar = 2131427486;
+			// aapt resource value: 0x7f0b0097
+			public const int Btn_Salvar = 2131427479;
 			
 			// aapt resource value: 0x7f0b0088
 			public const int Btn_VerHorarios = 2131427464;
@@ -1765,20 +1768,20 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b0061
 			public const int BusStatus = 2131427425;
 			
-			// aapt resource value: 0x7f0b009a
-			public const int Campo_Email = 2131427482;
+			// aapt resource value: 0x7f0b009b
+			public const int Campo_Email = 2131427483;
 			
-			// aapt resource value: 0x7f0b0098
-			public const int Campo_Usuario = 2131427480;
+			// aapt resource value: 0x7f0b0099
+			public const int Campo_Usuario = 2131427481;
 			
-			// aapt resource value: 0x7f0b009d
-			public const int Chb_Funcionario = 2131427485;
+			// aapt resource value: 0x7f0b009e
+			public const int Chb_Funcionario = 2131427486;
 			
 			// aapt resource value: 0x7f0b007d
 			public const int EdT_Senha = 2131427453;
 			
-			// aapt resource value: 0x7f0b0099
-			public const int EdT_UserSys = 2131427481;
+			// aapt resource value: 0x7f0b009a
+			public const int EdT_UserSys = 2131427482;
 			
 			// aapt resource value: 0x7f0b007c
 			public const int EdT_Usuario = 2131427452;
@@ -1792,11 +1795,11 @@ namespace Savar_git
 			// aapt resource value: 0x7f0b0060
 			public const int Placa_Onibus = 2131427424;
 			
-			// aapt resource value: 0x7f0b009b
-			public const int PrimeiraSenha = 2131427483;
-			
 			// aapt resource value: 0x7f0b009c
-			public const int SegundaSenha = 2131427484;
+			public const int PrimeiraSenha = 2131427484;
+			
+			// aapt resource value: 0x7f0b009d
+			public const int SegundaSenha = 2131427485;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int SysLog = 2131427421;
@@ -1806,9 +1809,6 @@ namespace Savar_git
 			
 			// aapt resource value: 0x7f0b005c
 			public const int TesteButton = 2131427420;
-			
-			// aapt resource value: 0x7f0b0097
-			public const int TextView_NomeTela = 2131427479;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int Txt_OnibusNumero = 2131427436;

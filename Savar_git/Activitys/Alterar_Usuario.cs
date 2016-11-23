@@ -24,6 +24,7 @@ namespace Savar_git
         private EditText EdT_ConfirmaSenha;
         private Button Btn_Salvar;
         private CheckBox Chb_Func;
+        private Button Btn_Buscar;
         private string cUsuario;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,35 +32,29 @@ namespace Savar_git
             string Call = Intent.GetStringExtra("Tela") ?? "";
             this.cUsuario = Intent.GetStringExtra("User") ?? "";
             SetContentView(Resource.Layout.Usuario_Crud);
-            TxV_DescTela = FindViewById<TextView>(Resource.Id.TextView_NomeTela);
-            EdT_Nome = FindViewById<EditText>(Resource.Id.Campo_Usuario);
-            EdT_Usuario = FindViewById<EditText>(Resource.Id.EdT_UserSys);
-            EdT_Email = FindViewById<EditText>(Resource.Id.Campo_Email);
-            EdT_Senha = FindViewById<EditText>(Resource.Id.PrimeiraSenha);
+            
+            EdT_Nome          = FindViewById<EditText>(Resource.Id.Campo_Usuario);
+            EdT_Usuario       = FindViewById<EditText>(Resource.Id.EdT_UserSys);
+            EdT_Email         = FindViewById<EditText>(Resource.Id.Campo_Email);
+            EdT_Senha         = FindViewById<EditText>(Resource.Id.PrimeiraSenha);
             EdT_ConfirmaSenha = FindViewById<EditText>(Resource.Id.SegundaSenha);
-            Btn_Salvar = FindViewById<Button>(Resource.Id.Btn_Salvar);
-            Chb_Func = FindViewById<CheckBox>(Resource.Id.Chb_Funcionario);
-            Chb_Func.Visibility = Call == "AdmCall" ? ViewStates.Visible : ViewStates.Gone;
+            Btn_Salvar        = FindViewById<Button  >(Resource.Id.Btn_Salvar);
+            Btn_Buscar        = FindViewById<Button  >(Resource.Id.Btn_BuscaUser);
+            Chb_Func          = FindViewById<CheckBox>(Resource.Id.Chb_Funcionario);
+
+            Chb_Func.Visibility   = Call == "AdmCall" ? ViewStates.Visible : ViewStates.Gone;
+            Btn_Buscar.Visibility = Call == "AdmCall" ? ViewStates.Visible : ViewStates.Gone;
+            EdT_Usuario.Enabled   = (Call != "Main_Screen_User");
+
             Btn_Salvar.Click += Btn_Salvar_Click;
-            EdT_Usuario.Enabled = (Call != "Main_Screen_User");
-            if (Call != "")
-            {
-                EdT_Usuario.FocusChange += EdT_Usuario_FocusChange;
-            }
+            Btn_Buscar.Click += Btn_Buscar_Click;
             if(cUsuario != "")
             {
                 FillFields();
             }
         }
-        private void FillFields()
-        {
-            DataRow Usuario;
-            Usuario = UserMngm.GetUser(this.cUsuario);
-            EdT_Nome.Text = Usuario["Nome"].ToString();
-            EdT_Usuario.Text = Usuario["Usuario"].ToString();
-            EdT_Email.Text = Usuario["Email"].ToString();
-        }
-        private void EdT_Usuario_FocusChange(object sender, View.FocusChangeEventArgs e)
+
+        private void Btn_Buscar_Click(object sender, EventArgs e)
         {
             System.Data.DataRow InfoUsuario;
             InfoUsuario = UserMngm.GetUser(EdT_Usuario.Text);
@@ -77,6 +72,16 @@ namespace Savar_git
                 }
             }
         }
+
+        private void FillFields()
+        {
+            DataRow Usuario;
+            Usuario          = UserMngm.GetUser(this.cUsuario);
+            EdT_Nome.Text    = Usuario["Nome"].ToString();
+            EdT_Usuario.Text = Usuario["Usuario"].ToString();
+            EdT_Email.Text   = Usuario["Email"].ToString();
+        }
+        
         private void Btn_Salvar_Click(object sender, EventArgs e)
         {
             string NomeCompleto, Usuario, EmailUsuario, Senha1, Senha2, cLog = "";

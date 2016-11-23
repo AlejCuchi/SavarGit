@@ -6,14 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearLayout1">
-    <TextView
-        android:text="Criar Usuário"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TextView_NomeTela"
-        android:layout_marginBottom="44.0dp"
-        android:gravity="center" />
+        android:layout_height="46.5dp"
+        android:weightSum="1.0"
+        android:id="@+id/linearLayout2">
+        <Button
+            android:text="Salvar"
+            android:id="@+id/Btn_Salvar"
+            android:layout_width="0dip"
+            android:layout_weight=".5"
+            android:layout_height="match_parent" />
+        <Button
+            android:text="Buscar"
+            android:layout_width="0dip"
+            android:layout_weight=".5"
+            android:layout_height="match_parent"
+            android:id="@+id/Btn_BuscaUser" />
+    </LinearLayout>
     <TextView
         android:text="Nome completo"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -76,9 +89,4 @@
         android:id="@+id/Chb_Funcionario"
         android:visibility="visible"
         android:checked="true" />
-    <Button
-        android:text="Salvar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Btn_Salvar" />
 </LinearLayout>

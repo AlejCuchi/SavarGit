@@ -69,13 +69,13 @@ namespace Savar_git
 
             this.cLog = "";
             cQuery += "USE Savar; ";
-            cQuery += " Select  * from Savar.cliente";
-            cQuery += " where  usuario = '" + Usuario.ToUpper() + "' ";
+            cQuery += " SELECT   * FROM Savar.cliente";
+            cQuery += " WHERE  usuario = '" + Usuario.ToUpper() + "' ";
             try
             {
                 if (Database.ConectionTest())
                 {
-                    MyData.SelectCommand = new MySqlCommand(cQuery, Database.Database);
+                    MyData.SelectCommand = new MySqlCommand(cQuery, Database.GetDataBase());
                     MyData.Fill(Users);
                 }
             }
@@ -110,7 +110,7 @@ namespace Savar_git
             cQuery += "( '"+User.ToUpper()+"' ,";
             cQuery += " '"+Senha+"' ,";
             cQuery += " '"+NomeUser+"' ,'"+email+"','1' ) ;";
-            Command = new MySqlCommand(cQuery, Database.Database);
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
             try
             {
                 if (Database.ConectionTest())
@@ -190,7 +190,7 @@ namespace Savar_git
                 cQuery += " email = '" + Email + "' ";
             }
             cQuery += "Where usuario = '" + User.TrimEnd().TrimStart().ToUpper() + "' ;";
-            Command = new MySqlCommand(cQuery, Database.Database);
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
             try
             {
                 if (Database.ConectionTest())

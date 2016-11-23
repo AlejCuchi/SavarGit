@@ -1,16 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Threading.Tasks;
 
 namespace Savar_git
 {
@@ -21,7 +11,18 @@ namespace Savar_git
         public int Onibus_Numero { get; set; }
         public string Onibus_Status { get; set; }
 
-        
+
+        public bool ExisteOnibus(int nNumeroBus, string cPlaca)
+        {
+            DataTable OnibusTeste;
+            bool lRet = false;
+            OnibusTeste =  SelectOnibus( nNumeroBus ,cPlaca  );
+
+            lRet = OnibusTeste.Rows.Count > 0;
+            return lRet;
+        }
+
+
 /**************************************
  * Função InputOnibus - Função para realizar inclusão de novo ônibus
  * Parâmetros 
@@ -58,7 +59,7 @@ namespace Savar_git
                 cQuery += ") ;";
             }
 
-            Command = new MySqlCommand(cQuery, Database.Database);
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
 
             try
             {
@@ -101,7 +102,7 @@ namespace Savar_git
                 cQuery += " numero_onibus = " + nNumero.ToString();
                 if(cPlaca != "" || cRota != "")
                 {
-                    cQuery += " , ";
+                    cQuery += " AND ";
                 }
             }
             if(cPlaca != "" )
@@ -109,7 +110,7 @@ namespace Savar_git
                 cQuery += " placa = '" +cPlaca + "' "  ;
                 if (cRota != "")
                 {
-                    cQuery += " , ";
+                    cQuery += " AND ";
 
                 }
             }
@@ -120,7 +121,7 @@ namespace Savar_git
 
             cQuery += "; ";
 
-            Command = new MySqlCommand(cQuery, Database.Database);
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
             try
             {
                 if (Database.ConectionTest())
@@ -140,7 +141,7 @@ namespace Savar_git
 
         public string UpdateOnibus(string cNumOnibus, string cPlaca, double PosX=0, double PosY=0, double PosZ=0, string cNewNumOnibus="", string cNewPlaca="")
         {
-            string lRet = "";
+            string cRet = "";
             string cQuery = "";
             dbMngmt Database = new dbMngmt();
             MySqlCommand Command;
@@ -151,18 +152,26 @@ namespace Savar_git
             cQuery += " SET  ";
             if (cNewNumOnibus != "")
             {
-                cQuery += " numero_onibus = '" + cNewNumOnibus + "' , ";
+                cQuery += " numero_onibus = '" + cNewNumOnibus + "'  ";
+                if(cNewPlaca != "" || PosX != 0)
+                {
+                    cQuery += " , ";
+                }
             }
             if(cNewPlaca != "")
             {
-                cQuery += " placa = '" + cNewPlaca + "' , ";
+                cQuery += " placa = '" + cNewPlaca + "'  ";
+                if(PosX != 0)
+                {
+                    cQuery += " , ";
+                }
             }
             if(PosX != 0 || PosY != 0 || PosZ != 0)
             {
-                cQuery += " x = "+PosX.ToString()+" , y = "+PosY.ToString()+" ,z =  "+PosZ.ToString()+" ";
+                cQuery += " x = "+PosX.ToString().Replace(',','.')+" , y = "+PosY.ToString().Replace(',', '.') + " ,z =  "+PosZ.ToString().Replace(',', '.') + " ";
             }
             cQuery += "  WHERE numero_onibus = '"+ cNumOnibus +"' AND placa = '"+ cPlaca +"' ; ";
-            Command = new MySqlCommand(cQuery, Database.Database);
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
             try
             {
                 if (Database.ConectionTest())
@@ -171,9 +180,9 @@ namespace Savar_git
                 }
             }catch(MySqlException ex)
             {
-                lRet = ex.ToString();
+               cRet =  ex.ToString();
             }
-            return lRet;
+            return cRet;
         }
         public bool DeleteOnibus()
         {

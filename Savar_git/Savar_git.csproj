@@ -116,8 +116,7 @@
     <Compile Include="Activitys\Main_Screen_User.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
     <Compile Include="DataResource\UsuarioClass.cs" />
-    <Compile Include="Funcoes.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,10 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="googleplayservices-maps">
-      <Visible>False</Visible>
-      <Version>29.0.0.2</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="googleplayservices-plus">
       <Visible>False</Visible>
       <Version>29.0.0.2</Version>
     </XamarinComponentReference>

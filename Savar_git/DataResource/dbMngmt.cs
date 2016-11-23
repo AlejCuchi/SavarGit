@@ -8,15 +8,23 @@ using System.Data;
 
 namespace Savar_git
 {
-    [Activity(Label = "SavarMap")]
-    public class dbMngmt :Activity
+    //[Activity(Label = "SavarMap")]
+    public class dbMngmt// :Activity
     {
-        public static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
-        public MySqlConnection Database = new MySqlConnection(ConectString);
+        private static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
+        private MySqlConnection Database = new MySqlConnection(ConectString);
         private TextView SysLogVIewer;
         private Button NewButton;
         //private EditText TesteWIndow;
-        protected override void OnCreate(Bundle savedInstanceState)
+        public string GetConectString()
+        {
+            return ConectString;
+        }
+        public MySqlConnection GetDataBase()
+        {
+            return Database;
+        }
+       /* protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -28,14 +36,14 @@ namespace Savar_git
             NewButton.Click += NewButton_Click;
             //TesteWIndow.Text = "Teste Botão1";
         }
-
+        */
         private void NewButton_Click(object sender, EventArgs e)
         {
             SysLogVIewer.Text = "Teste base de dados.";
             OnibusClass obj = new OnibusClass();
             if (ConectionTest())
             {
-                SysLogVIewer.Text =  obj.UpdateOnibus("111", "aaa-3333",111,123,444);
+                SysLogVIewer.Text =  obj.UpdateOnibus("111", "aaa-3333",111,123,444).ToString();
             }
             
         }
