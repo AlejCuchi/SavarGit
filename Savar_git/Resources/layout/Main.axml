@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mapFrag"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    class="com.google.android.gms.maps.MapFragment" />
+    android:weightSum="1.0"
+    android:id="@+id/linearLayout1">
+    <Button
+        android:text="Salva ponto de onibus"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight=".1"
+        android:id="@+id/BtnAddPonto" />
+    <fragment
+        android:id="@+id/mapFrag"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight=".9"
+        class="com.google.android.gms.maps.MapFragment" />
+</LinearLayout>

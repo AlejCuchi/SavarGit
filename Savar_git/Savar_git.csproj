@@ -37,6 +37,7 @@
     <Debugger>Xamarin</Debugger>
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -108,13 +109,16 @@
   <ItemGroup>
     <Compile Include="Activitys\Activity1.cs" />
     <Compile Include="Activitys\Alterar_Usuario.cs" />
+    <Compile Include="Activitys\CadastroPontos.cs" />
     <Compile Include="Activitys\CustomAdapter.cs" />
     <Compile Include="Activitys\Horarios.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Login.cs" />
     <Compile Include="Activitys\main_admin.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
+    <Compile Include="Activitys\PopUpPonto.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
+    <Compile Include="DataResource\PontosClass.cs" />
     <Compile Include="DataResource\UsuarioClass.cs" />
     <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
@@ -145,6 +149,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\List_view_data_template.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RotasUsuarios.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\PontoPopUp.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

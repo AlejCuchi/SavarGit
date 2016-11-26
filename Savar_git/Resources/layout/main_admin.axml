@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/Btn_AdmFunc" />
     <Button
-        android:text="Pontuacoes"
+        android:text="Pontos de ônibus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Btn_AdmPontos" />
@@ -30,4 +30,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Btn_RtsPrds" />
+    
 </LinearLayout>

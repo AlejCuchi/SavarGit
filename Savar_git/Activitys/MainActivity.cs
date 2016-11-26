@@ -10,6 +10,7 @@ using Android.Locations;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Text;
+using Android.Gms.Maps.Model;
 
 namespace Savar_git
 {
@@ -19,14 +20,26 @@ namespace Savar_git
     {
         private string _NumOnibus;
         private string _PlacaOnibus;
-        private Location _currentLocation;
-        private LocationManager _locationManager;
         private string _ProviderGps;
         private string cLog;
+        private string _ScreenCall;
+        private Location _currentLocation;
+        private LocationManager _locationManager;
         private double PosX, PosY;
         private Semaphore AcessoAoBanco = new Semaphore(1,2);
         private Thread UpdateStatus ;
         private volatile bool _ContinueTread;
+
+
+        struct Positions
+        {
+            public double PosX { get; set; }
+            public double PosY { get; set; }
+            public string IdPonto { get; set; }
+            public string Descricao { get; set; }
+        }
+
+
         // ######## - Metodos IOnMapReadyCallback 
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -85,6 +98,7 @@ namespace Savar_git
             SetContentView(Resource.Layout.Main);
             _NumOnibus = Intent.GetStringExtra("NumeOnibus") ?? "";
             _PlacaOnibus = Intent.GetStringExtra("PlacaOnibus") ?? "";
+            _ScreenCall = Intent.GetStringExtra("CallScreen") ?? "";
             if (_NumOnibus != "")
             {
                 Gps();
@@ -92,6 +106,10 @@ namespace Savar_git
                 UpdateStatus = new Thread(UpdatePositionFunc);
                 UpdateStatus.Start();
                 Console.WriteLine("Aparece asssim ooohh");
+            }
+            else if(_ScreenCall != "")
+            {
+
             }
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
             mapFragment.GetMapAsync(this);
@@ -230,21 +248,26 @@ namespace Savar_git
         }
         
         
-        /*private void CriaPontos(GoogleMap googleMap)
+        private void CriaPontos(GoogleMap googleMap)
         {
 
-
-            List<Position> Locations = GetReferences();
-
+            List<Positions> Locations = BuscaPontos();
+            
             // Conecta banco
             // Busca Pontos -26.242570, -48.815741
-            foreach (Position item in Locations)
+            foreach (Positions item in Locations)
             {
+                
                 googleMap.AddMarker(new MarkerOptions()
                        .SetPosition(new LatLng(item.PosX, item.PosY))
-                       .SetTitle(item.Desc));
+                       .SetTitle(item.Descricao));
             }
-        }*/
+        }
+
+        private List<Positions> BuscaPontos()
+        {
+            return null;
+        }
     }
 }
 
