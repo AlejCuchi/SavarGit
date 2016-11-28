@@ -11,100 +11,79 @@ using Android.Views;
 using Android.Widget;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Locations;
 
 namespace Savar_git.Activitys
 {
     
-    [Activity(Label = "CadastroPontos", MainLauncher = true)]
+    [Activity(Label = "CadastroPontos", MainLauncher = false)]
     public class  CadastroPontos : Activity, IOnMapReadyCallback
     {
         protected MapFragment Map;
         protected Button Btn_AddPonto, Btn_SalvarPonto;
         protected Marker _NovoPonto;
-        protected string _DescriPonto;
-        protected double _PosXMark, _PosYMark;
+        protected Location _currentLocation;
+        protected LocationManager _locationManager;
+        private double _PosXMark, _PosYMark;
+
+       
         public void OnMapReady(GoogleMap googleMap)
         {
-            //CriaPontos(googleMap);
+            PontosClass Ponto = new PontosClass();
+            
             googleMap.UiSettings.ZoomControlsEnabled = true;
             googleMap.UiSettings.CompassEnabled = true;
             googleMap.MapClick += GoogleMap_MapClick;
-            googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+            
+            Ponto.CarregaPontosMapa(googleMap);
         }
 
         private void GoogleMap_MapClick(object sender, GoogleMap.MapClickEventArgs e)
         {
-            GoogleMap mapsGoogle = (GoogleMap)sender;
-            
+            GoogleMap googleMap = (GoogleMap)sender;
             _PosXMark = e.Point.Latitude;
             _PosYMark = e.Point.Longitude;
             if(_NovoPonto == null)
             {
-                _NovoPonto = mapsGoogle.AddMarker(new MarkerOptions().SetPosition(new LatLng(_PosXMark, _PosYMark)));
+                _NovoPonto = googleMap.AddMarker(new MarkerOptions().SetPosition(new LatLng(_PosXMark, _PosYMark)));
             }
             else
             {
                 _NovoPonto.Remove();
-                _NovoPonto = mapsGoogle.AddMarker(new MarkerOptions().SetPosition(new LatLng(_PosXMark, _PosYMark)));
+                _NovoPonto = googleMap.AddMarker(new MarkerOptions().SetPosition(new LatLng(_PosXMark, _PosYMark)));
             }
-            
             Btn_AddPonto.Enabled = true;
+            new PontosClass().CarregaPontosMapa(googleMap);
         }
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
             SetContentView(Resource.Layout.Main);
             Btn_AddPonto = FindViewById<Button>(Resource.Id.BtnAddPonto);
-            Btn_SalvarPonto = FindViewById<Button>(Resource.Id.Btn_SalvarPonto);
+            //Btn_SalvarPonto = FindViewById<Button>(Resource.Id.Btn_SalvarPonto);
             Map = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
-
-            Btn_SalvarPonto.Click += Btn_SalvarPonto_Click1;
-
-
             Map.GetMapAsync(this);
             Btn_AddPonto.Enabled = false;
             Btn_AddPonto.Click += Btn_Salvar_Click;
+            
         }
-
-        private void Btn_SalvarPonto_Click1(object sender, EventArgs e)
-        {
-            PontosClass Ponto = new PontosClass();
-            GoogleMap mapsGoogle = (GoogleMap)sender;
-            if (Ponto.InsertPonto(_NovoPonto.Title, _NovoPonto.Position.Latitude, _NovoPonto.Position.Longitude))
-            {
-                Toast.MakeText(this, "Ponto criado com sucesso",ToastLength.Long);
-                Ponto.CarregaPontosMapa(mapsGoogle);
-            }
-            else
-            {
-                Toast.MakeText(this, "Erro. Tente novamente mais tarde", ToastLength.Long);
-            }
-        }
-
-        private void Btn_SalvarPonto_Click(object sender, EventArgs e)
-        {
-            PontosClass MngPontos = new PontosClass();
-            EditText Descricao = FindViewById<EditText>(Resource.Id.DescricaoPonto);
-            _DescriPonto = Descricao.Text;
-
-            if(MngPontos.InsertPonto(_DescriPonto, _PosXMark, _PosYMark))
-            {
-                Toast.MakeText(this,"Ponto criado com sucesso!",ToastLength.Long);
-            }
-            else
-            {
-                Toast.MakeText(this, "Erro na criação do ponto, Tente novamente mais tarde!!", ToastLength.Long);
-            }
-        }
-
         private void Btn_Salvar_Click(object sender, EventArgs e)
         {
             FragmentTransaction transaction = FragmentManager.BeginTransaction();
-
+            Bundle Args = new Bundle();
+            PontosClass Ponto = new PontosClass();
             PopUpPonto InfoPopUp = new PopUpPonto();
-            InfoPopUp.Show(transaction, "testo");
+
+            Args.PutDouble("Longitude", _NovoPonto.Position.Longitude);
+            Args.PutDouble("Latitude", _NovoPonto.Position.Latitude);
+            InfoPopUp.Arguments = Args;
+            InfoPopUp.Show(transaction, "");
+            Btn_AddPonto.Enabled = false;
         }
+
+        
     }
     
 }

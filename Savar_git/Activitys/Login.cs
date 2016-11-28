@@ -12,7 +12,7 @@ using Android.Widget;
 namespace Savar_git
 {
     
-    [Activity(Label = "Login", MainLauncher = false) ]
+    [Activity(Label = "Login", MainLauncher = true) ]
     public class Login : Activity
     {
         public UsuarioClass UserMngm = new UsuarioClass();

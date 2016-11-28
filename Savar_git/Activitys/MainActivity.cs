@@ -49,8 +49,8 @@ namespace Savar_git
 
             googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
         }
-// ######## - Metodos IOnMapReadyCallback fim
-// ######## - Metodos do iLocationListner 
+        // ######## - Metodos IOnMapReadyCallback fim
+        // ######## - Metodos do iLocationListner 
         public void OnLocationChanged(Location location)
         {
             _currentLocation = location;
@@ -62,13 +62,13 @@ namespace Savar_git
                 UpdateOnStatusChange();
                 AcessoAoBanco.Release();
             }
-            
+
         }
 
         public void OnProviderDisabled(string provider)
         {
-           /* var intent = new Intent(Android.Provider.Settings.ActionLocationSourceSettings);
-            StartActivity(intent);*/
+            /* var intent = new Intent(Android.Provider.Settings.ActionLocationSourceSettings);
+             StartActivity(intent);*/
         }
 
         public void OnProviderEnabled(string provider)
@@ -85,9 +85,9 @@ namespace Savar_git
             }
         }
 
-// ######## - Metodos do iLocationListner Fim 
-//------------------------------------------------------------------------------------
-// ######## - Status do APP
+        // ######## - Metodos do iLocationListner Fim 
+        //------------------------------------------------------------------------------------
+        // ######## - Status do APP
         protected override void OnCreate(Bundle bundle)
         {
             

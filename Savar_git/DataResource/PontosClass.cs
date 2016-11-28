@@ -11,8 +11,8 @@ using Android.Views;
 using Android.Widget;
 using System.Data;
 using MySql.Data.MySqlClient;
-using Android.Gms.Maps
 using Android.Gms.Maps.Model;
+using Android.Gms.Maps;
 
 namespace Savar_git
 {
@@ -76,7 +76,7 @@ namespace Savar_git
             bool lValida = true;
 
             cQuery += "INSERT INTO Savar.ponto_onibus (Descricao_ponto,x,y) ";
-            cQuery += "VALUES ('"+Descricao_ponto+"', "+PosiX.ToString()+"," +PosiY.ToString()+" ) ;";
+            cQuery += "VALUES ('"+Descricao_ponto+"', "+PosiX.ToString().Replace(',','.')+"," +PosiY.ToString().Replace(',', '.') + " ) ;";
 
             Comand = new MySqlCommand(cQuery, Database.GetDataBase());
 
@@ -156,7 +156,7 @@ namespace Savar_git
             {
                 
                 googleMap.AddMarker(new MarkerOptions()
-                       .SetPosition(new LatLng(Convert.ToDouble( Item["x"]), Convert.ToDouble( Item.["y"])))
+                       .SetPosition(new LatLng(Convert.ToDouble( Item["x"]), Convert.ToDouble( Item["y"])))
                        .SetTitle(Item["ID_ponto"].ToString() +"|" + Item["Descricao_ponto"].ToString()));
             }
             return googleMap;

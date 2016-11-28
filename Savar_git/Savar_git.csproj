@@ -28,7 +28,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
@@ -111,6 +111,7 @@
     <Compile Include="Activitys\Alterar_Usuario.cs" />
     <Compile Include="Activitys\CadastroPontos.cs" />
     <Compile Include="Activitys\CustomAdapter.cs" />
+    <Compile Include="Activitys\GoogleMaps.cs" />
     <Compile Include="Activitys\Horarios.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Login.cs" />
