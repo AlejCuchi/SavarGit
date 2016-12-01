@@ -6,7 +6,6 @@ using Android.Gms.Maps;
 using System.Collections.Generic;
 using System.Threading;
 using Android.Locations;
-
 using System.Threading.Tasks;
 using System.Linq;
 using System.Text;
@@ -29,8 +28,6 @@ namespace Savar_git
         private Semaphore AcessoAoBanco = new Semaphore(1,2);
         private Thread UpdateStatus ;
         private volatile bool _ContinueTread;
-
-
         struct Positions
         {
             public double PosX { get; set; }
@@ -38,8 +35,6 @@ namespace Savar_git
             public string IdPonto { get; set; }
             public string Descricao { get; set; }
         }
-
-
         // ######## - Metodos IOnMapReadyCallback 
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -90,11 +85,7 @@ namespace Savar_git
         // ######## - Status do APP
         protected override void OnCreate(Bundle bundle)
         {
-            
-            
             base.OnCreate(bundle);
-            
-            
             SetContentView(Resource.Layout.Main);
             _NumOnibus = Intent.GetStringExtra("NumeOnibus") ?? "";
             _PlacaOnibus = Intent.GetStringExtra("PlacaOnibus") ?? "";
@@ -135,9 +126,6 @@ namespace Savar_git
             base.OnDestroy();
             StopThread();
         }
-
-
-
         // ######## - Status do APP Fim
         public void StopThread()
         {
@@ -145,7 +133,6 @@ namespace Savar_git
         }
         void UpdatePositionFunc()
         {
-            
             string cRet = "";
             OnibusClass ObjOnibus = new OnibusClass();
             while (_ContinueTread)
@@ -173,15 +160,12 @@ namespace Savar_git
             PosiX = GetPosX();
             PosiY = GetPosY();
             cRet = ObjOnibus.UpdateOnibus(_NumOnibus, _PlacaOnibus, PosiX, PosiY);
-            
             if(cRet != "")
             {
                 Console.WriteLine( cRet);
             }
             //Console.WriteLine("Executou StatusChabge ----------------------------------");
         }
-        
-        
         private void Gps()
         {
             _locationManager = (LocationManager)GetSystemService(LocationService);
@@ -260,7 +244,8 @@ namespace Savar_git
                 
                 googleMap.AddMarker(new MarkerOptions()
                        .SetPosition(new LatLng(item.PosX, item.PosY))
-                       .SetTitle(item.Descricao));
+                       .SetTitle(item.Descricao)
+                       .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.icon)));
             }
         }
 

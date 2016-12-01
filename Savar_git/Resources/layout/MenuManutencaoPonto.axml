@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="Descrição: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dip"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1" />
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="0dip"
+            android:layout_weight=".7"
+            android:layout_height="match_parent"
+            android:id="@+id/PontoDescri"
+            android:editable="false" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:weightSum="1.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+        <TextView
+            android:text="Latitude: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dip"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2" />
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="0dip"
+            android:layout_weight=".7"
+            android:layout_height="match_parent"
+            android:id="@+id/PontoLatitude"
+            android:editable="false" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:weightSum="1.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3">
+        <TextView
+            android:text="Longitude"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dip"
+            android:layout_weight=".3"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3" />
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="0dip"
+            android:layout_weight=".7"
+            android:layout_height="match_parent"
+            android:id="@+id/PontoLongitude"
+            android:editable="false" />
+    </LinearLayout>
+    <Button
+        android:text="Deletar Ponto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PontoApagar" />
+</LinearLayout>

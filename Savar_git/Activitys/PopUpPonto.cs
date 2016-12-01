@@ -11,11 +11,12 @@ using Android.Views;
 using Android.Widget;
 using Android.Gms.Maps;
 
-namespace Savar_git.Activitys
+namespace Savar_git
 {
     class PopUpPonto : DialogFragment
     {
         protected View view;
+        private bool AddPonto;
         public  override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle saverInstanceState)
         {
             base.OnCreateView(inflater, container, saverInstanceState);
@@ -26,7 +27,10 @@ namespace Savar_git.Activitys
             return view;
 
         }
-
+        public bool HasAdd()
+        {
+            return AddPonto;
+        }
         private void Btn_SalvarPonto_Click(object sender, EventArgs e)
         {
             EditText Descric = view.FindViewById<EditText>(Resource.Id.DescricaoPonto);
@@ -43,6 +47,7 @@ namespace Savar_git.Activitys
                 if(Ponto.InsertPonto(Descric.Text, Lat, Log))
                 {
                     this.Dismiss();
+                    AddPonto = true;
                 }
             }
         }

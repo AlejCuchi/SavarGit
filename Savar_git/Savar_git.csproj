@@ -110,16 +110,18 @@
     <Compile Include="Activitys\Activity1.cs" />
     <Compile Include="Activitys\Alterar_Usuario.cs" />
     <Compile Include="Activitys\CadastroPontos.cs" />
+    <Compile Include="Activitys\CriandoRotas.cs" />
     <Compile Include="Activitys\CustomAdapter.cs" />
-    <Compile Include="Activitys\GoogleMaps.cs" />
     <Compile Include="Activitys\Horarios.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Login.cs" />
     <Compile Include="Activitys\main_admin.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
     <Compile Include="Activitys\PopUpPonto.cs" />
+    <Compile Include="Activitys\ViewPontos.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
     <Compile Include="DataResource\PontosClass.cs" />
+    <Compile Include="DataResource\RotaClass.cs" />
     <Compile Include="DataResource\UsuarioClass.cs" />
     <Compile Include="Activitys\MainActivity.cs" />
     <Compile Include="DataResource\OnibusClass.cs" />
@@ -127,6 +129,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\CadastroRotas.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <None Include="app.config" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
@@ -158,6 +163,12 @@
     <AndroidResource Include="Resources\layout\PontoPopUp.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\MenuManutencaoPonto.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CadastroRotasInicio.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -181,6 +192,8 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\arrowcircle.png" />
+    <AndroidResource Include="Resources\drawable\arrowdown.png" />
     <Content Include="Resources\values\Alterações.txt" />
   </ItemGroup>
   <ItemGroup>

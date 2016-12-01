@@ -147,7 +147,28 @@ namespace Savar_git
             return lValida;
         }
 
-
+        public string DeletaPonto(string idPonto )
+        {
+            dbMngmt Database = new dbMngmt();
+            string cQuery = "";
+            MySqlCommand Command;
+            cQuery += "DELETE FROM Savar.ponto_onibus WHERE ID_ponto = " + idPonto + " ;";
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
+            
+            try
+            {
+                if (Database.ConectionTest())
+                {
+                    Command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                return ex.ToString();
+            }
+            
+            return "";
+        }
         public GoogleMap CarregaPontosMapa(GoogleMap googleMap)
         {
             DataTable PontosProMapa = new DataTable();
@@ -157,7 +178,8 @@ namespace Savar_git
                 
                 googleMap.AddMarker(new MarkerOptions()
                        .SetPosition(new LatLng(Convert.ToDouble( Item["x"]), Convert.ToDouble( Item["y"])))
-                       .SetTitle(Item["ID_ponto"].ToString() +"|" + Item["Descricao_ponto"].ToString()));
+                       .SetTitle(Item["ID_ponto"].ToString() +"|" + Item["Descricao_ponto"].ToString())
+                       .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowdown)));
             }
             return googleMap;
         }

@@ -21,7 +21,7 @@
                 android:layout_width="0dip"
                 android:layout_weight=".3"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView1" />
+                android:id="@+id/TxTViewDescicao" />
             <EditText
                 android:inputType="textMultiLine"
                 android:layout_width="0dip"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:text="Numero da Rota : "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_height="match_parent"
+            android:layout_width="0dip"
+            android:layout_weight=".4"
+            android:id="@+id/textView1" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="0dip"
+            android:layout_weight=".6"
+            android:layout_height="match_parent"
+            android:id="@+id/EdT_NumeroDarota" />
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="0dip"
+            android:layout_weight=".6"
+            android:layout_height="match_parent"
+            android:id="@+id/EdT_NumeroDarota" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:id="@+id/linearLayout2">
+        <TextView
+            android:text="Descrição da rota :"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dip"
+            android:layout_weight=".4"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2" />
+        <EditText
+            android:inputType="textMultiLine"
+            android:layout_width="0dip"
+            android:layout_weight=".6"
+            android:layout_height="match_parent"
+            android:id="@+id/EdT_PontoDeDescricao" />
+    </LinearLayout>
+    <Button
+        android:text="Selecionar Pontos da rota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SelecPontosRota" />
+</LinearLayout>
