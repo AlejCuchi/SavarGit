@@ -12,7 +12,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 namespace Savar_git
 {
-    [Activity(Label = "CriandoRotas")]
+    [Activity(Label = "CriandoRotas",MainLauncher = false) ]
     public class CriandoRotas : Activity , IOnMapReadyCallback
     {
         private List<Marker> MarcasRota;
@@ -25,13 +25,8 @@ namespace Savar_git
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-
             SetContentView(Resource.Layout.Main);
-
-            
             SalvarRota = FindViewById<Button>(Resource.Id.BtnAddPonto);
-
             SalvarRota.Click += SalvarRota_Click;
             NumMarcas = 0;
             _IdRota = Intent.GetStringExtra("IdRota") ?? "";
@@ -39,6 +34,7 @@ namespace Savar_git
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
             mapFragment.GetMapAsync(this);
         }
+
 
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -54,11 +50,12 @@ namespace Savar_git
         {
             Marker Marca = e.Marker;
             bool lTesta = false;
+            int nI;
             if(MarcasRota != null)
             { 
-                foreach (Marker Item in MarcasRota)
+                for(nI= 0; nI< MarcasRota.Count;nI++)
                 {
-                    if (Item.Title == Marca.Title)
+                    if (MarcasRota[nI].Title.Split('-')[0] == Marca.Title.Split('-')[0])
                     { 
                     
                         lTesta = true;
@@ -67,14 +64,17 @@ namespace Savar_git
                 }
                 if (lTesta)
                 {
-                    Rotas.RemovePonto(Marca);
-                    MarcasRota.Remove(Marca);
+
+                    string ID_ponto = Marca.Title.Split('-')[0];
+                    Rotas.RemovePonto(ID_ponto);
+                    MarcasRota.RemoveRange(nI,1);
                     Marca.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowdown));
                     NumMarcas--;
                 }
                 else
                 {
-                    Rotas.AddPonto(Marca);
+                    string ID_ponto = Marca.Title.Split('-')[0];
+                    Rotas.AddPonto(ID_ponto);
                     MarcasRota.Add(Marca);
                     Marca.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowcircle));
                     NumMarcas++;
@@ -90,16 +90,32 @@ namespace Savar_git
             }
             else
             {
-                MarcasRota = new List<Marker> { Marca};
+                string MarcaId = Marca.Title.Split('-')[0];
+                MarcasRota = new List<Marker> { Marca };
+                Rotas.AddPonto(MarcaId);
+                Marca.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowcircle));
+                NumMarcas++;
             }
             
         }
-        
-
-        
         private void SalvarRota_Click(object sender, EventArgs e)
         {
-            
+            Rotas.InsertRota(_IdRota, _DescricaoRota);
+            DesmarcaTodos();
+        }
+
+        private void DesmarcaTodos()
+        {
+            int nI = 0;
+
+            for(nI=0;nI < MarcasRota.Count; nI++)
+            {
+                MarcasRota[nI].SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowdown));
+                Rotas.RemovePonto(MarcasRota[nI].Title.Split('-')[0]);
+                NumMarcas--;
+            }
+            MarcasRota.RemoveRange(nI, MarcasRota.Count);
+
         }
     }
 
@@ -151,9 +167,9 @@ namespace Savar_git
             if (ValorDescricao.Text !=""  && ValorDIdDarota.Text != "")
             {
                 Intent TelaDoMapa = new Intent(this, typeof(CriandoRotas));
-                Bundle ValorDaRota = new Bundle();
-                ValorDaRota.PutString("IdRota", ValorDIdDarota.Text);
-                ValorDaRota.PutString("Descricao", ValorDescricao.Text);
+                
+                TelaDoMapa.PutExtra("IdRota", ValorDIdDarota.Text);
+                TelaDoMapa.PutExtra("Descricao", ValorDescricao.Text);
                 StartActivity(TelaDoMapa);
             }
             else if (RotasTeste.ExistRota(ValorDIdDarota.Text))

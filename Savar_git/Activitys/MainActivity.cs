@@ -13,7 +13,7 @@ using Android.Gms.Maps.Model;
 
 namespace Savar_git
 {
-    [Activity(Label = "MapScreen", MainLauncher = false)]
+    [Activity(Label = "MapScreen", MainLauncher = true)]
     
     public class MapScreen : Activity, IOnMapReadyCallback, ILocationListener
     {
@@ -41,7 +41,7 @@ namespace Savar_git
             //CriaPontos(googleMap);
             googleMap.UiSettings.ZoomControlsEnabled = true;
             googleMap.UiSettings.CompassEnabled = true;
-
+            new PontosClass().CarregaPontosMapa(googleMap);
             googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
         }
         // ######## - Metodos IOnMapReadyCallback fim
@@ -92,7 +92,7 @@ namespace Savar_git
             _ScreenCall = Intent.GetStringExtra("CallScreen") ?? "";
             if (_NumOnibus != "")
             {
-                Gps();
+                
                 _ContinueTread = true;
                 UpdateStatus = new Thread(UpdatePositionFunc);
                 UpdateStatus.Start();
@@ -102,6 +102,7 @@ namespace Savar_git
             {
 
             }
+            Gps();
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
             mapFragment.GetMapAsync(this);
         }
@@ -229,29 +230,6 @@ namespace Savar_git
             }
 
             return cRet;
-        }
-        
-        
-        private void CriaPontos(GoogleMap googleMap)
-        {
-
-            List<Positions> Locations = BuscaPontos();
-            
-            // Conecta banco
-            // Busca Pontos -26.242570, -48.815741
-            foreach (Positions item in Locations)
-            {
-                
-                googleMap.AddMarker(new MarkerOptions()
-                       .SetPosition(new LatLng(item.PosX, item.PosY))
-                       .SetTitle(item.Descricao)
-                       .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.icon)));
-            }
-        }
-
-        private List<Positions> BuscaPontos()
-        {
-            return null;
         }
     }
 }

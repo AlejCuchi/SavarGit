@@ -178,7 +178,7 @@ namespace Savar_git
                 
                 googleMap.AddMarker(new MarkerOptions()
                        .SetPosition(new LatLng(Convert.ToDouble( Item["x"]), Convert.ToDouble( Item["y"])))
-                       .SetTitle(Item["ID_ponto"].ToString() +"|" + Item["Descricao_ponto"].ToString())
+                       .SetTitle(Item["ID_ponto"].ToString() +"-" + Item["Descricao_ponto"].ToString())
                        .SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.arrowdown)));
             }
             return googleMap;

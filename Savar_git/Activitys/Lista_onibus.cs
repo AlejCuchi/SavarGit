@@ -50,7 +50,6 @@ namespace Savar_git
         private void BuscaOnibus_Click(object sender, EventArgs e)
         {
             ListView DataList = FindViewById<ListView>(Resource.Id.LiV_Onibus);
-            
             int NumeroOnibus = 0;
             string cPlaca = "";
             string cRota = "";

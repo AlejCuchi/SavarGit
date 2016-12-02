@@ -61,24 +61,24 @@ namespace Savar_git
 
 
 
-        public void AddPonto(Marker Marca)
+        public void AddPonto(string Marca)
         {
             if(PontosRota == null)
             {
-                PontosRota = new List<string> {  };
+                PontosRota = new List<string> { Marca };
             }
             else
             {
-                PontosRota.Add(Marca.Title.Split('|')[0]);
+                PontosRota.Add(Marca);
             }
             this.NumPontos++;
         }
 
 
 
-        public void RemovePonto(Marker Marca)
+        public void RemovePonto(string Marca)
         {
-            PontosRota.Remove(Marca.Title.Split('|')[0]);
+            PontosRota.Remove(Marca);
         }
 
 
@@ -98,7 +98,7 @@ namespace Savar_git
                     cQuery += " , ";
                 }
                 cQuery += "  ('" + Idrota + "','" + DescricaoRota + "','" 
-                                 + nI.ToString() + "','" +PontosRota[nI] + "') ";
+                                 + nI.ToString() + "'," +PontosRota[nI] + ") ";
             }
             cQuery += ";";
 

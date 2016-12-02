@@ -14,7 +14,7 @@ using Android.Locations;
 using System.Threading;
 namespace Savar_git
 {
-    [Activity(Label = "CadastroPontos")]
+    [Activity(Label = "CadastroPontos" ,MainLauncher = false)]
     public class  CadastroPontos : Activity, IOnMapReadyCallback
     {
         protected MapFragment Map;
@@ -31,6 +31,7 @@ namespace Savar_git
             googleMap.UiSettings.CompassEnabled = true;
             googleMap.MapClick += GoogleMap_MapClick;
             googleMap.MarkerClick += GoogleMap_MarkerClick;
+
             Ponto.CarregaPontosMapa(googleMap);
         }
         private void GoogleMap_MarkerClick(object sender, GoogleMap.MarkerClickEventArgs e)
@@ -46,7 +47,6 @@ namespace Savar_git
             InfoPopUp.Arguments = Args;
             InfoPopUp.Show(transaction, "");
             LSaiu = InfoPopUp.HasAdd();
-            
         }
         private void DetailView(GoogleMap.MarkerClickEventArgs e,ref Semaphore Locker)
         {

@@ -11,7 +11,6 @@ using Android.Widget;
 
 namespace Savar_git
 {
-    
     [Activity(Label = "Login", MainLauncher = false) ]
     public class Login : Activity
     {

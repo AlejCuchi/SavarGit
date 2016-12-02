@@ -50,12 +50,12 @@ namespace Savar_git
 
         private void BtnVerMapas_Click(object sender, EventArgs e)
         {
-            Intent VerMapas = new Intent(this, typeof(MapScreen));
+            Intent VerMapas = new Intent(this, typeof(CadastroPontos));
             StartActivity(VerMapas);
         }
         private void BtnHorario_Click(object sender, EventArgs e)
         {
-            //Intent VerHorarios = new Intent(this,)
+           //Intent VerHorarios = new Intent(this,)
         }
     }
 }
