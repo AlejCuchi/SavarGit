@@ -15,9 +15,13 @@ using System.Data;
 
 namespace Savar_git
 {     
-    class RotaClass
+    public class RotaClass
     {
-        
+        public string ID_ROta { get; set; }
+        public string DescricaoRota { get; set; }
+        public int QtdPontos { get; set; }
+        public string NumeroOnibus { get; set; }
+
         private int NumPontos;
         private List<string> PontosRota;
 
@@ -33,7 +37,7 @@ namespace Savar_git
             return lValida;
         }
 
-        private DataTable SelectRota(string id_rota)
+        public DataTable SelectRota(string id_rota = "",bool EmAcao = false)
         {
             DataTable MyData = new DataTable();
             MySqlCommand Command;
@@ -41,7 +45,24 @@ namespace Savar_git
             MySqlDataAdapter MyRotas = new MySqlDataAdapter();
             string cQuery = "";
 
-            cQuery += "SELECT * FROM Savar.Rota WHERE id_rota = '"+id_rota+"'";
+            cQuery += "SELECT * FROM Savar.rota  ";
+            if(id_rota != ""|| EmAcao)
+            {
+                cQuery += " WHERE ";
+            }
+            if(id_rota != "")
+            {
+                cQuery += "  id_rota = '" + id_rota + "'";
+                if (EmAcao)
+                {
+                    cQuery += ",";
+                }
+            }
+            if (EmAcao)
+            {
+                cQuery += " numero_onibus <> ' ' ";
+            }
+            cQuery += " ; ";
             Command = new MySqlCommand(cQuery,Database.GetDataBase());
             try
             {
@@ -81,7 +102,40 @@ namespace Savar_git
             PontosRota.Remove(Marca);
         }
 
-
+        public string UpdateRota(string idRota, string hora = "",string NumOnibus="")
+        {
+            string cRet = "";
+            string cQuery = "";
+            MySqlCommand Command;
+            dbMngmt Database = new dbMngmt();
+            cQuery += "UPDATE Savar.rota SET ";
+            if(hora != "")
+            {
+                cQuery += " Hora = '" + hora + "' ";
+                if(NumOnibus != "")
+                {
+                    cQuery += " , ";
+                }
+            }
+            if(NumOnibus != "")
+            {
+                cQuery += " numero_onibus = '" + NumOnibus + "' ";
+            }
+            cQuery += "WHERE id_rota = '"+idRota+"' ; ";
+            Command = new MySqlCommand(cQuery, Database.GetDataBase());
+            try
+            {
+                if (Database.ConectionTest())
+                {
+                    Command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                cRet = ex.ToString();
+            }
+            return cRet;
+        }
 
 
         public bool InsertRota(string Idrota, string DescricaoRota)
@@ -90,7 +144,7 @@ namespace Savar_git
             string cQuery = "";
             MySqlCommand Command;
             dbMngmt Database = new dbMngmt();
-            cQuery += "INSERT INTO Savar.rota (id_rota,desc_rota,codigo_sequencia,id_ponto) VALUES "  ;
+            cQuery += "INSERT INTO Savar.rota (id_rota,desc_rota,codigo_sequencia,numero_onibus, id_ponto) VALUES "  ;
             for (int nI = 0; nI < PontosRota.Count; nI++)
             {
                 if (nI > 0)
@@ -98,7 +152,7 @@ namespace Savar_git
                     cQuery += " , ";
                 }
                 cQuery += "  ('" + Idrota + "','" + DescricaoRota + "','" 
-                                 + nI.ToString() + "'," +PontosRota[nI] + ") ";
+                                 + nI.ToString() + "', ' ' , " +PontosRota[nI] + ") ";
             }
             cQuery += ";";
 

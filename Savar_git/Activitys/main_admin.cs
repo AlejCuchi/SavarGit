@@ -35,7 +35,7 @@ namespace Savar_git
         }
         private void Btn_Pontuacao_Click(object sender, EventArgs e)
         {
-            NextActivity = new Intent(this, typeof(MapScreen));
+            NextActivity = new Intent(this, typeof(CadastroPontos));
             NextActivity.PutExtra("Tela","CadastroPontos");
             StartActivity(NextActivity);
         }

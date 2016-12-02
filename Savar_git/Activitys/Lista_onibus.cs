@@ -5,6 +5,7 @@ using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Widget;
+using Android.Support.V7.View;
 
 namespace Savar_git
 {
@@ -20,7 +21,6 @@ namespace Savar_git
         private List<OnibusClass> ListOnibus = new List<OnibusClass>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            
             base.OnCreate(savedInstanceState);
             
             SetContentView(Resource.Layout.lista_onibus);
@@ -28,9 +28,7 @@ namespace Savar_git
             BuscaOnibus = FindViewById<Button>(Resource.Id.Btn_BuscarOnibus);
             BuscaOnibus.Click += BuscaOnibus_Click;
             DataGridOnibus.ItemClick += DataGridOnibus_ItemClick;
-            
         }
-
         private void DataGridOnibus_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             OnibusClass OnibusSelecionado = ListOnibus[e.Position];
@@ -41,7 +39,7 @@ namespace Savar_git
             
             if (OnibusSelecionado.ExisteOnibus(Convert.ToInt32(cNumero), cPlaca))
             {
-                MapsOnibus = new Android.Content.Intent(this, typeof(MapScreen));
+                MapsOnibus = new Android.Content.Intent(this, typeof(RotasMapas));
                 MapsOnibus.PutExtra("NumeOnibus", cNumero);
                 MapsOnibus.PutExtra("PlacaOnibus", cPlaca);
                 StartActivity(MapsOnibus);

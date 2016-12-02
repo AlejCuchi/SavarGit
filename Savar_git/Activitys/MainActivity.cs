@@ -13,12 +13,11 @@ using Android.Gms.Maps.Model;
 
 namespace Savar_git
 {
-    [Activity(Label = "MapScreen", MainLauncher = true)]
+    [Activity(Label = "MapScreen", MainLauncher = false)]
     
     public class MapScreen : Activity, IOnMapReadyCallback, ILocationListener
     {
-        private string _NumOnibus;
-        private string _PlacaOnibus;
+        private IList<string> ListParam;
         private string _ProviderGps;
         private string cLog;
         private string _ScreenCall;
@@ -27,7 +26,10 @@ namespace Savar_git
         private double PosX, PosY;
         private Semaphore AcessoAoBanco = new Semaphore(1,2);
         private Thread UpdateStatus ;
+        private OnibusClass ObjOnibus = new OnibusClass();
+        private RotaClass ObjRota = new RotaClass();
         private volatile bool _ContinueTread;
+        
         struct Positions
         {
             public double PosX { get; set; }
@@ -35,6 +37,7 @@ namespace Savar_git
             public string IdPonto { get; set; }
             public string Descricao { get; set; }
         }
+        
         // ######## - Metodos IOnMapReadyCallback 
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -87,17 +90,18 @@ namespace Savar_git
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
-            _NumOnibus = Intent.GetStringExtra("NumeOnibus") ?? "";
-            _PlacaOnibus = Intent.GetStringExtra("PlacaOnibus") ?? "";
+            ListParam = Intent.GetStringArrayListExtra("Array") ;
             _ScreenCall = Intent.GetStringExtra("CallScreen") ?? "";
-            if (_NumOnibus != "")
+            if (ListParam != null)
             {
+
                 
                 _ContinueTread = true;
                 UpdateStatus = new Thread(UpdatePositionFunc);
                 UpdateStatus.Start();
-                Console.WriteLine("Aparece asssim ooohh");
+                ObjRota.UpdateRota(ListParam[2].ToString(), "", ListParam[0]);
             }
+         
             else if(_ScreenCall != "")
             {
 
@@ -105,6 +109,7 @@ namespace Savar_git
             Gps();
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.mapFrag);
             mapFragment.GetMapAsync(this);
+            
         }
 
         protected override void OnResume()
@@ -126,6 +131,11 @@ namespace Savar_git
         {
             base.OnDestroy();
             StopThread();
+            if (ListParam != null)
+            {
+                new RotaClass().UpdateRota(ListParam[2], "", " ");
+                new OnibusClass().UpdateOnibus(ListParam[0], ListParam[1], 0, 0, 0);
+            }
         }
         // ######## - Status do APP Fim
         public void StopThread()
@@ -135,13 +145,14 @@ namespace Savar_git
         void UpdatePositionFunc()
         {
             string cRet = "";
-            OnibusClass ObjOnibus = new OnibusClass();
+            
+            string Hora = DateTime.Now.Hour.ToString();
             while (_ContinueTread)
             {
                 if (_currentLocation != null)
                 {
                     
-                    cRet = ObjOnibus.UpdateOnibus(_NumOnibus, _PlacaOnibus, GetPosX(), GetPosY());
+                    cRet = ObjOnibus.UpdateOnibus(ListParam[0], ListParam[1], GetPosX(), GetPosY());
                     
                     Thread.Sleep(10000);// espera 10 segundos para executar de novo
                     if (cRet != "")
@@ -160,7 +171,7 @@ namespace Savar_git
             OnibusClass ObjOnibus = new OnibusClass();
             PosiX = GetPosX();
             PosiY = GetPosY();
-            cRet = ObjOnibus.UpdateOnibus(_NumOnibus, _PlacaOnibus, PosiX, PosiY);
+            cRet = ObjOnibus.UpdateOnibus(ListParam[0], ListParam[1], PosiX, PosiY);
             if(cRet != "")
             {
                 Console.WriteLine( cRet);

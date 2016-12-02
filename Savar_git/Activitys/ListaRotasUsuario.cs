@@ -9,20 +9,17 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Gms.Maps;
 
 namespace Savar_git
 {
-    [Activity(Label = "RotasMapas")]
-    public class RotasMapas : Activity 
+    [Activity(Label = "ListaRotasUsuario", MainLauncher = false)]
+    public class ListaRotasUsuario : Activity
     {
         private LinearLayout LayoutMissing;
         private TextView Txto1, Txto2, Txto3;
-        Button BuscaOnibus;
         private ListView DataGridList;
         private EditText ID_ROta, DescricaoRota, QtdPontos;
         private List<RotaClass> RotasOnibus = new List<RotaClass>();
-        private string NumOnibus, PlacaOnibus;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,35 +30,23 @@ namespace Savar_git
             Txto2 = FindViewById<TextView>(Resource.Id.textView8);
             Txto3 = FindViewById<TextView>(Resource.Id.textView9);
             DataGridList = FindViewById<ListView>(Resource.Id.LiV_Onibus);
-            BuscaOnibus = FindViewById<Button>(Resource.Id.Btn_BuscarOnibus);
-            NumOnibus = Intent.GetStringExtra("NumeOnibus") ?? "";
-            PlacaOnibus = Intent.GetStringExtra("PlacaOnibus") ?? "";
+            
             Txto1.Text = "Id Rota";
             Txto2.Text = "Descrição";
             Txto3.Text = "Qtd Pontos";
-            BuscaOnibus.Click += BuscaOnibus_Click;
             DataGridList.ItemClick += DataGridList_ItemClick;
-            
+            BuscaRotas();
             // Create your application here
         }
 
         private void DataGridList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            List<string> Valores = new List<string>();
-            Valores.Add( NumOnibus);
-            Valores.Add(PlacaOnibus);
-            Valores.Add(RotasOnibus[e.Position].ID_ROta);
-            Valores.Add(RotasOnibus[e.Position].DescricaoRota);
-            Intent MapsScreen = new Intent(this, typeof(MapScreen));
-            MapsScreen.PutStringArrayListExtra("Array", Valores);
-            StartActivity(MapsScreen);
+            Intent NewScreem = new Intent(this, typeof(MapaUser));
+            NewScreem.PutExtra("Rota", RotasOnibus[e.Position].ID_ROta);
+            NewScreem.PutExtra("Onibus", RotasOnibus[e.Position].NumeroOnibus);
+            StartActivity(NewScreem);
         }
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-        }
-        private void BuscaOnibus_Click(object sender, EventArgs e)
+        void BuscaRotas()
         {
             ListView DataList = FindViewById<ListView>(Resource.Id.LiV_Onibus);
             int ContNum = 0;
@@ -71,43 +56,38 @@ namespace Savar_git
             DescricaoRota = FindViewById<EditText>(Resource.Id.Txt_PlacaOnibus);
             QtdPontos = FindViewById<EditText>(Resource.Id.Txt_Rotas);
             System.Data.DataTable RespOnibus;
-            
+
+
             cPlaca = DescricaoRota.Text;
             cRota = QtdPontos.Text;
 
-            RotaClass onibusClass = new RotaClass();
-            RespOnibus = onibusClass.SelectRota(ID_ROta.Text);
+            RotaClass rotaClass = new RotaClass();
+            RespOnibus = rotaClass.SelectRota("",true);
             DataList = FindViewById<ListView>(Resource.Id.LiV_Onibus);
             RotasOnibus.Clear();
             for (int i = 0; i < RespOnibus.Rows.Count; i++)
             {
                 if (RotasOnibus.Count > 0)
                 {
-                    if (RotasOnibus[ContNum].ID_ROta == RespOnibus.Rows[i]["id_rota"].ToString())
+                    if (RotasOnibus[ContNum - 1].ID_ROta == RespOnibus.Rows[i]["id_rota"].ToString())
                     {
-                        RotasOnibus[ContNum].QtdPontos++;
+                        RotasOnibus[ContNum - 1].QtdPontos++;
                     }
                     else
                     {
                         ContNum = i;
-                        RotaClass Onibus = new RotaClass()
-                        {
-                            ID_ROta = RespOnibus.Rows[i]["id_rota"].ToString(),
-                            DescricaoRota = RespOnibus.Rows[i]["desc_rota"].ToString(),
-                            QtdPontos = 1
-                        };
-                        RotasOnibus.Add(Onibus);
                     }
                 }
                 else
                 {
-                    ContNum = i;
                     RotaClass Onibus = new RotaClass()
                     {
                         ID_ROta = RespOnibus.Rows[i]["id_rota"].ToString(),
                         DescricaoRota = RespOnibus.Rows[i]["desc_rota"].ToString(),
-                        QtdPontos = 1
+                        QtdPontos = 1,
+                        NumeroOnibus = RespOnibus.Rows[i]["numero_onibus"].ToString()
                     };
+                    ContNum = i;
                     RotasOnibus.Add(Onibus);
                 }
             }

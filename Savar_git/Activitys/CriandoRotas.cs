@@ -141,7 +141,7 @@ namespace Savar_git
 
 
 
-    [Activity(Label = "InfoRotas", MainLauncher = true)]
+    [Activity(Label = "InfoRotas", MainLauncher = false)]
     class PopUpRota : Activity
     {
         

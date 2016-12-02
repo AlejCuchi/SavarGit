@@ -14,7 +14,7 @@ namespace Savar_git
         private static string ConectString = "Server=mysql.cogdzkecvymm.us-west-2.rds.amazonaws.com;Port=3306;database=Savar;User Id=admin;Password=felipe39;charset=utf8";
         private MySqlConnection Database = new MySqlConnection(ConectString);
         private TextView SysLogVIewer;
-        private Button NewButton;
+       // private Button NewButton;
         //private EditText TesteWIndow;
         public string GetConectString()
         {

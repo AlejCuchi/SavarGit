@@ -16,7 +16,7 @@ namespace Savar_git
     public class Alterar_Usuario : Activity
     {
         private UsuarioClass UserMngm  = new UsuarioClass();
-        private TextView TxV_DescTela;
+        //private TextView TxV_DescTela;
         private EditText EdT_Nome;
         private EditText EdT_Usuario;
         private EditText EdT_Email;

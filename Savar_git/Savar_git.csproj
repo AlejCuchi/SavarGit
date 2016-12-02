@@ -108,15 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activitys\Activity1.cs" />
+    <Compile Include="Activitys\AdapterRotas.cs" />
     <Compile Include="Activitys\Alterar_Usuario.cs" />
     <Compile Include="Activitys\CadastroPontos.cs" />
     <Compile Include="Activitys\CriandoRotas.cs" />
     <Compile Include="Activitys\CustomAdapter.cs" />
     <Compile Include="Activitys\Horarios.cs" />
+    <Compile Include="Activitys\ListaRotasUsuario.cs" />
     <Compile Include="Activitys\Lista_onibus.cs" />
     <Compile Include="Activitys\Login.cs" />
     <Compile Include="Activitys\main_admin.cs" />
     <Compile Include="Activitys\Main_Screen_User.cs" />
+    <Compile Include="Activitys\MapaUser.cs" />
     <Compile Include="Activitys\PopUpPonto.cs" />
     <Compile Include="Activitys\ViewPontos.cs" />
     <Compile Include="DataResource\dbMngmt.cs" />
@@ -194,6 +197,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\arrowcircle.png" />
     <AndroidResource Include="Resources\drawable\arrowdown.png" />
+    <AndroidResource Include="Resources\drawable\bus.png" />
     <Content Include="Resources\values\Alterações.txt" />
   </ItemGroup>
   <ItemGroup>

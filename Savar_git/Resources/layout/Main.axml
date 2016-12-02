@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1.0"
-    android:id="@+id/linearLayout1">
+    android:id="@+id/LayoutBuscaBuss">
     <Button
         android:text="Salva ponto de onibus"
         android:layout_width="match_parent"
